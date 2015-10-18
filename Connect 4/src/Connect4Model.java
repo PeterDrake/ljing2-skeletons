@@ -112,7 +112,7 @@ public class Connect4Model {
 	}
 
 	/**
-	 * Toggles the current player between StdDraw.BLACK and StdDraw.WHITE..
+	 * Toggles the current player between StdDraw.BLACK and StdDraw.WHITE.
 	 */
 	public void toggleCurrentPlayer() {
 		// TODO You have to write this
