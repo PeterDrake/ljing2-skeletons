@@ -31,6 +31,9 @@ public class RailyardModelTest {
 		mainLine.add(2);
 		mainLine.add(1);
 		assertFalse(model.isSolved());
+		mainLine.add(8);
+		assertFalse(model.isSolved());
+		mainLine.remove();
 		mainLine.add(0);
 		assertTrue(model.isSolved());
 	}

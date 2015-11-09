@@ -55,7 +55,7 @@ public class RailyardModel {
 		if (mainLine.size() != 6) {
 			return false;
 		}
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 6; i++) {
 			if (mainLine.get(i) != 5 - i) {
 				return false;
 			}
