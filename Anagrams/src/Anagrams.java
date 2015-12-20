@@ -72,7 +72,7 @@ public class Anagrams {
 
 	/** Plays the game. */
 	public static void main(String[] args) {
-		String[] dictionary = readDictionary();
+		String[] dictionary = new In("enable1.txt").readAllLines();
 		while (true) {
 			String correct = randomWord(dictionary);
 			char[] scrambled = correct.toCharArray();
@@ -90,24 +90,6 @@ public class Anagrams {
 	/** Returns a random word from dictionary. */
 	public static String randomWord(String[] dictionary) {
 		return dictionary[StdRandom.uniform(dictionary.length)];
-	}
-
-	/** Reads the dictionary from a file and returns it. */
-	public static String[] readDictionary() {
-		// Count the words in the dictionary
-		int count = 0;
-		In input = new In("enable1.txt");
-		while (input.hasNextLine()) {
-			input.readLine();
-			count++;
-		}
-		// Read the words into an array
-		input = new In("enable1.txt");
-		String[] result = new String[count];
-		for (int i = 0; i < result.length; i++) {
-			result[i] = input.readLine();
-		}
-		return result;
 	}
 
 	/** Randomly scrambles word. */
