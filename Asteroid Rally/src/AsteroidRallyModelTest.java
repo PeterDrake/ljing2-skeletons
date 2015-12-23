@@ -73,17 +73,17 @@ public class AsteroidRallyModelTest {
 
 	@Test
 	public void testGameOverByExplosion() {
-		assertFalse(model.gameOver());
+		assertEquals(0, model.winner());
 		model.getAsteroids()[0] = new Extent(0.25, 0.5, 0.05);
-		assertTrue(model.gameOver());
+		assertEquals(2, model.winner());
 	}
 
 	@Test
 	public void testGameOverByScore() {
 		for (Flag f : model.getFlags()) {
-			f.setHitByShip2();
+			f.setHitByShip1();
 		}
-		assertTrue(model.gameOver());
+		assertEquals(1, model.winner());
 	}
 
 }

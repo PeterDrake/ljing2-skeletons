@@ -19,8 +19,7 @@ public class AsteroidRallyModel {
 		asteroids = new Extent[10];
 		for (int i = 0; i < asteroids.length; i++) {
 			do {
-				asteroids[i] = new Extent(StdRandom.uniform(),
-						StdRandom.uniform(), 0.05);
+				asteroids[i] = new Extent(StdRandom.uniform(), StdRandom.uniform(), 0.05);
 			} while (isConflictingAsteroidPosition(i));
 		}
 		flags = new Flag[5];
@@ -43,15 +42,6 @@ public class AsteroidRallyModel {
 				f.setHitByShip2();
 			}
 		}
-	}
-
-	/**
-	 * Returns true if the game is over, i.e., either ship has hit an asteroid
-	 * or hit all of the flags.
-	 */
-	public boolean gameOver() {
-		// TODO You have to write this
-		return false;
 	}
 
 	/** Returns the asteroids. */
@@ -100,6 +90,16 @@ public class AsteroidRallyModel {
 	public boolean isConflictingFlagPosition(int i) {
 		// TODO You have to write this
 		return false;
+	}
+
+	/**
+	 * Returns 1 if player 1 has won, 2 if player 2 has won, or 0 if neither
+	 * player has won. A player wins if they hit all flags first or if the other
+	 * player hits a rock.
+	 */
+	public int winner() {
+		// TODO You have to write this
+		return -1;
 	}
 
 }

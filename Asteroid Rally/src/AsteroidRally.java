@@ -39,7 +39,7 @@ public class AsteroidRally {
 		} else if (f.hasBeenHitByShip2()) {
 			StdDraw.setPenColor(StdDraw.RED);
 		}
-		StdDraw.filledCircle(e.getX(), e.getY(), e.getRadius());
+		StdDraw.filledSquare(e.getX(), e.getY(), e.getRadius());
 	}
 
 	/** Draws a ship. */
@@ -91,15 +91,21 @@ public class AsteroidRally {
 		titleScreen();
 		while (true) {
 			model = new AsteroidRallyModel();
-			while (!model.gameOver()) {
+			int winner = model.winner();
+			while (winner == 0) {
 				draw();
 				handleKeyPresses();
 				model.advance();
+				winner = model.winner();
 			}
 			draw();
 			StdDraw.setPenColor(StdDraw.WHITE);
-			StdDraw.text(0.5, 0.75, "Game over");
-			StdDraw.text(0.5, 0.25, "Press space to play again");
+			String w = "Red";
+			if (winner == 2) {
+				w = "Blue";
+			}
+			StdDraw.text(0.5, 0.75, w + " player wins!");
+			StdDraw.text(0.5, 0.25, "Press space to play again.");
 			StdDraw.show(0);
 			while (!StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_SPACE)) {
 				// Wait for spacebar
@@ -112,9 +118,14 @@ public class AsteroidRally {
 		StdDraw.clear(StdDraw.BLACK);
 		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.text(0.5, 0.75, "Asteroid Rally");
-		StdDraw.text(0.5, 0.25, "Maneuver with A/W/D or J/I/L");
-		StdDraw.text(0.5, 0.2, "to avoid rocks and hit all colored flags.");
-		StdDraw.show(2000);
+		StdDraw.text(0.5, 0.4, "Red player: maneuver with A/W/D.");
+		StdDraw.text(0.5, 0.3, "Blue player: manevuer with J/I/L.");
+		StdDraw.text(0.5, 0.2, "Avoid rocks, hit all square flags first.");
+		StdDraw.text(0.5, 0.1, "Press space to start.");
+		StdDraw.show(0);
+		while (!StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_SPACE)) {
+			// Wait for spacebar
+		}
 	}
 
 }
