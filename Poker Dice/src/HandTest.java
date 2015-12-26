@@ -135,6 +135,8 @@ public class HandTest {
 		assertEquals(720000, hand.getScore());
 		hand.set(4, 0, 0, 0, 4);
 		assertEquals(504000, hand.getScore());
+		hand.set(3, 2, 3, 3, 5);
+		assertEquals(335200, hand.getScore());
 		hand.set(2, 1, 4, 5, 0);
 		assertEquals(54210, hand.getScore());		
 	}

@@ -129,7 +129,16 @@ public class PokerDice {
 	public int selectNumberOfPlayers() {
 		StdDraw.clear(DARK_GREEN);
 		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.text(0.5, 0.5, "Select number of players (2-5).");
+		StdDraw.text(0.5, 0.75, "Select number of players (2-5).");
+		StdDraw.text(0.5, 0.55, "Hands are:");
+		StdDraw.text(0.5, 0.45, "5 of a kind");
+		StdDraw.text(0.5, 0.4, "4 of a kind");
+		StdDraw.text(0.5, 0.35, "Full house");
+		StdDraw.text(0.5, 0.3, "Straight");
+		StdDraw.text(0.5, 0.25, "3 of a kind");
+		StdDraw.text(0.5, 0.2, "2 pair");
+		StdDraw.text(0.5, 0.15, "1 pair");
+		StdDraw.text(0.5, 0.1, "High card");
 		while (true) {
 			if (StdDraw.hasNextKeyTyped()) {
 				int n = StdDraw.nextKeyTyped() - '0';
