@@ -2,6 +2,9 @@
 public class Focus {
 
 	/** Color used to draw the squares. */
+	public static final java.awt.Color VERY_LIGHT_BLUE = new java.awt.Color(191, 191, 255);
+
+	/** Color used to draw the squares. */
 	public static final java.awt.Color LIGHT_BLUE = new java.awt.Color(127, 127, 255);
 
 	public static void main(String[] args) {
@@ -15,12 +18,19 @@ public class Focus {
 		model = new FocusModel();
 	}
 
-	/** Draws the state of the model, including instructions. */
-	public void draw(String instructions) {
+	/**
+	 * Draws the state of the model, including instructions.
+	 * 
+	 * @param source
+	 *            If non-null, drawing highlights all legal moves from source.
+	 */
+	public void draw(String instructions, Location source) {
 		StdDraw.clear();
 		for (int r = 0; r < FocusModel.BOARD_WIDTH; r++) {
 			for (int c = 0; c < FocusModel.BOARD_WIDTH; c++) {
-				drawSquare(model.getPile(new Location(r, c)), 1.5 + c, 9.5 - r);
+				Location destination = new Location(r, c);
+				drawSquare(model.getPile(destination), 1.5 + c, 9.5 - r,
+						source != null && model.isLegalMove(source, destination));
 			}
 		}
 		StdDraw.setPenColor(LIGHT_BLUE);
@@ -33,10 +43,19 @@ public class Focus {
 		StdDraw.show(0);
 	}
 
-	/** Draws one square (and any pieces piled there) at coordinates x, y. */
-	public void drawSquare(Deque<Integer> pile, double x, double y) {
+	/**
+	 * Draws one square (and any pieces piled there) at coordinates x, y.
+	 * 
+	 * @param highlight
+	 *            If true, highlights this square as a legal move.
+	 */
+	public void drawSquare(Deque<Integer> pile, double x, double y, boolean highlight) {
 		if (pile != null) {
-			StdDraw.setPenColor(LIGHT_BLUE);
+			if (highlight) {
+				StdDraw.setPenColor(VERY_LIGHT_BLUE);
+			} else {
+				StdDraw.setPenColor(LIGHT_BLUE);
+			}
 			StdDraw.filledSquare(x, y, 0.45);
 			x -= 0.2;
 			y -= 0.2;
@@ -62,15 +81,20 @@ public class Focus {
 	public void run() {
 		StdDraw.setXscale(0, 10);
 		StdDraw.setYscale(0, 10);
+		StdDraw.text(5.0, 8.0, "Focus");
+		StdDraw.text(5.0, 6.0, "Get your pieces on top of the piles.");
+		StdDraw.text(5.0, 4.0, "The first player unable to move loses.");
+		StdDraw.text(5.0, 2.0, "Click to continue.");
 		StdDraw.show(0);
+		waitForClick();
 		while (!model.isGameOver()) {
 			draw(getCurrentPlayerName()
-					+ ", click on one of your piles or your reserves.");
+					+ ", click on one of your piles or your reserves.", null);
 			Location source;
 			do {
 				source = waitForClick();
 			} while (source == null || !model.isLegalSource(source));
-			draw(getCurrentPlayerName() + ", click on destination square.");
+			draw(getCurrentPlayerName() + ", click on destination square.", source);
 			Location destination;
 			do {
 				destination = waitForClick();
@@ -80,7 +104,7 @@ public class Focus {
 			model.toggleColorToPlay();
 		}
 		model.toggleColorToPlay();
-		draw(getCurrentPlayerName() + " wins.");
+		draw(getCurrentPlayerName() + " wins.", null);
 	}
 
 	/**
