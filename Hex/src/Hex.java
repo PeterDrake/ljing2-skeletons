@@ -2,11 +2,11 @@
 public class Hex {
 
 	/** Background color for the board. */
-	public static final java.awt.Color DARK_GREEN = new java.awt.Color(0, 63, 0);
+	public static final java.awt.Color DARK_GREEN = new java.awt.Color(0, 95, 0);
 
 	/** Edit this to change the board size. */
 	public static void main(String[] args) {
-		new Hex(8).run();
+		new Hex(9).run();
 	}
 
 	/** The game model. */
@@ -61,15 +61,16 @@ public class Hex {
 				drawHex(color, r, c);
 			}
 		}
+		StdDraw.setPenColor(StdDraw.WHITE);
 		int winner = model.findWinner();
 		if (winner == HexModel.BLACK) {
-			StdDraw.setPenColor(StdDraw.BLACK);
-			StdDraw.filledRectangle(0.5, 0.0, 0.5, 0.05);
-			StdDraw.filledRectangle(0.5, 1.0, 0.5, 0.05);
+			StdDraw.text(0.5, 0.95, "Black wins!");
 		} else if (winner == HexModel.WHITE) {
-			StdDraw.setPenColor(StdDraw.WHITE);
-			StdDraw.filledRectangle(0.0, 0.5, 0.05, 0.5);
-			StdDraw.filledRectangle(1.0, 0.5, 0.05, 0.5);
+			StdDraw.text(0.5, 0.95, "White wins!");
+		} else if (model.getCurrentPlayer() == HexModel.BLACK) {
+			StdDraw.text(0.5, 0.95, "Black to choose a hex. Try to connect top to bottom.");
+		} else {
+			StdDraw.text(0.5, 0.95, "White to choose a hex. Try to connect left side to right side.");
 		}
 		StdDraw.show(0);
 	}
