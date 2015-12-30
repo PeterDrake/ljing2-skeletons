@@ -37,20 +37,30 @@ public class Go {
 				}
 			}
 		}
-		// Draw instructions or score
+		// Draw ownership squares
+		for (int r = 0; r < w; r++) {
+			for (int c = 0; c < w; c++) {
+				Color color = model.owner(r, c);
+				if (color != null) {
+					StdDraw.setPenColor(color);
+					StdDraw.filledSquare(c, w - 1 - r, 0.1);
+				}
+			}
+		}
+		// Draw instructions
 		StdDraw.setPenColor(StdDraw.YELLOW);
 		if (model.gameOver()) {
-			double score = model.score();
-			if (score > 0.0) {
-				StdDraw.text((w / 2.0) - 0.5, w, "White wins by " + score + " (including 7.5 komi).");
-			} else {
-				StdDraw.text((w / 2.0) - 0.5, w, "Black wins by " + -score + " (including 7.5 komi).");
-			}
+			StdDraw.text((w / 2.0) - 0.5, w + 0.25, "Game over.");
 		} else if (model.getCurrentPlayer() == StdDraw.BLACK) {
-			StdDraw.text((w / 2.0) - 0.5, w, "Black's turn. P to pass, U to undo, or click on a point.");
+			StdDraw.text((w / 2.0) - 0.5, w + 0.25, "Black's turn. P to pass, U to undo, or click on a point.");
 		} else {
-			StdDraw.text((w / 2.0) - 0.5, w, "White's turn. P to pass, U to undo, or click on a point.");
+			StdDraw.text((w / 2.0) - 0.5, w + 0.25, "White's turn. P to pass, U to undo, or click on a point.");
 		}
+		// Draw score
+		int black = model.score(StdDraw.BLACK);
+		int white = model.score(StdDraw.WHITE);
+		StdDraw.text((w / 2.0) - 0.5, w - 0.25,
+				"Black: " + black + "    White: " + white + "+7.5 = " + (white + 7.5));
 		StdDraw.show(0);
 	}
 
@@ -76,6 +86,7 @@ public class Go {
 
 	/** Plays the game. */
 	public void run() {
+		showRules();
 		StdDraw.setScale(-1.5, model.getBoardWidth() + 0.5);
 		while (!model.gameOver()) {
 			draw();
@@ -109,6 +120,27 @@ public class Go {
 			return 13;
 		} else {
 			return 19;
+		}
+	}
+
+	/** Displays very concise rules. */
+	public void showRules() {
+		StdDraw.clear();
+		StdDraw.text(0.5, 0.9, "CONCISE RULES OF GO:");
+		StdDraw.text(0.5, 0.8, "Take turns occupying intersections.");
+		StdDraw.text(0.5, 0.7, "Occupy or surround more intersections to win.");
+		StdDraw.text(0.5, 0.6, "Tightly surround opponent's pieces to capture them.");
+		StdDraw.text(0.5, 0.5, "Self-capture is illegal.");
+		StdDraw.text(0.5, 0.4, "It is illegal to repeat a board state with same color to play.");
+		StdDraw.text(0.5, 0.3, "The game ends after two consecutive passes.");
+		StdDraw.text(0.5, 0.2, "White gets 7.5 extra points to make up for playing second.");
+		StdDraw.text(0.5, 0.1, "CLICK TO CONTINUE");
+		StdDraw.show(0);
+		while (!StdDraw.mousePressed()) {
+			// Wait for mouse press
+		}
+		while (StdDraw.mousePressed()) {
+			// Wait for mouse release
 		}
 	}
 

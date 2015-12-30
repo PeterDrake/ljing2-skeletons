@@ -35,7 +35,8 @@ public class GoModelTestHighLevel {
 				".#.#O....\n" +
 				"..###O...\n";
 		assertEquals(end, model.toString());
-		assertEquals(-3.5, model.score(), 0.001);
+		assertEquals(46, model.score(StdDraw.BLACK));
+		assertEquals(35, model.score(StdDraw.WHITE));
 		for (int i = 0; i < 10; i++) {
 			model.undo();
 		}

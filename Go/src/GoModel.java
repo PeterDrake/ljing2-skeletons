@@ -147,6 +147,22 @@ public class GoModel {
 	}
 
 	/**
+	 * Returns the owner (BLACK, WHITE, or null) of the point at row, column.
+	 */
+	public Color owner(int row, int column) {
+		Location point = new Location(row, column);
+		if (get(point) == StdDraw.BLACK || (canReach(point, null, StdDraw.BLACK, new HashSet<Location>())
+				&& !canReach(point, null, StdDraw.WHITE, new HashSet<Location>()))) {
+			return StdDraw.BLACK;
+		}
+		if (get(point) == StdDraw.WHITE || (canReach(point, null, StdDraw.WHITE, new HashSet<Location>())
+				&& !canReach(point, null, StdDraw.BLACK, new HashSet<Location>()))) {
+			return StdDraw.WHITE;
+		}
+		return null;
+	}
+
+	/**
 	 * Plays a pass move (which is always legal) and toggles the current player.
 	 */
 	public void pass() {
@@ -213,32 +229,20 @@ public class GoModel {
 		previousStates.push(copy);
 	}
 
-	/** Returns the score of the game, with positive values being wins for white. Incorporates 7.5 komi. */
-	public double score() {
-		double result = 7.5;
+	/**
+	 * Returns the number of points occupied or surrounded by player. Does not
+	 * into account the 7.5 bonus points given to white.
+	 */
+	public int score(Color color) {
+		int result = 0;
 		for (int r = 0; r < board.length; r++) {
 			for (int c = 0; c < board.length; c++) {
-				result += scoreRegion(r, c);
+				if (owner(r, c) == color) {
+					result++;
+				}
 			}
 		}
 		return result;
-	}
-
-	/**
-	 * Returns the points (positive for white, negative for black) for the stone
-	 * at row, column.
-	 */
-	public double scoreRegion(int row, int column) {
-		Location point = new Location(row, column);
-		if (get(point) == StdDraw.WHITE || (canReach(point, null, StdDraw.WHITE, new HashSet<Location>())
-				&& !canReach(point, null, StdDraw.BLACK, new HashSet<Location>()))) {
-			return 1;
-		}
-		if (get(point) == StdDraw.BLACK || (canReach(point, null, StdDraw.BLACK, new HashSet<Location>())
-				&& !canReach(point, null, StdDraw.WHITE, new HashSet<Location>()))) {
-			return -1;
-		}
-		return 0;
 	}
 
 	/** Switches the current player between BLACK and WHITE. */
