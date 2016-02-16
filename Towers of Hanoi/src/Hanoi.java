@@ -44,9 +44,9 @@ public class Hanoi {
 		if (n == 1) {
 			StdOut.println(start + " -> " + end);
 		} else {
-			hanoi(start, end, spare, n);
+			hanoi(start, end, spare, n - 1);
 			StdOut.println(start + " -> " + end);
-			hanoi(spare, start, end, n);			
+			hanoi(spare, start, end, n - 1);			
 		}
 	}
 
