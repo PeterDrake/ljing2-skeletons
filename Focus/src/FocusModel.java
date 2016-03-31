@@ -101,15 +101,19 @@ public class FocusModel {
 		return true;
 	}
 
-	/**
-	 * Returns true if it is legal to move from source to destination. Assumes
-	 * source is a legal source and destination is on the board.
-	 */
-	public boolean isLegalMove(Location source, Location destination) {
-		return source == RESERVES_LOCATIONS[BLACK]
-				|| source == RESERVES_LOCATIONS[WHITE]
-				|| (source.getDistanceTo(destination) <= getPile(source).size());
-	}
+    /**
+     * Returns true if it is legal to move from source to destination. Assumes
+     * source is a legal source.
+     */
+    public boolean isLegalMove(Location source, Location destination) {
+	int d = source.getDistanceTo(destination);
+	return (destination.getRow() >= 0) // Can't move to reserves
+	    && (d > 0) // Can't move to same place
+	    // The rest checks that source has enough pieces
+	    && (source == RESERVES_LOCATIONS[BLACK]
+		|| source == RESERVES_LOCATIONS[WHITE]
+		|| d <= getPile(source).size());
+    }
 
 	/**
 	 * Returns true if the current player can move from source (which might be
@@ -146,7 +150,7 @@ public class FocusModel {
 		Deque<Integer> hand = new Deque<Integer>();
 		int n = 1;
 		Deque<Integer> sourcePile = null;
-		if (source.getRow() > 0) { // Square on board
+		if (source.getRow() >= 0) { // Square on board
 			n = source.getDistanceTo(destination);
 			sourcePile = getPile(source);
 		} else { // Reserves

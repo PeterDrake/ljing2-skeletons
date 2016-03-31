@@ -58,6 +58,8 @@ public class FocusModelTest {
 		assertFalse(model.isLegalMove(source, new Location(6, 3)));		
 		// Illegal diagonal move
 		assertFalse(model.isLegalMove(source, new Location(3, 4)));
+		// Illegal to move from a location to the same location
+		assertFalse(model.isLegalMove(source, source));
 	}
 
 	@Test
@@ -154,4 +156,32 @@ public class FocusModelTest {
 		assertTrue(model.isGameOver());
 	}
 
+	@Test
+	public void testMoveOntoEmptySquare() {
+		// This test was added to help find a bug in an earlier version of the
+		// program. If everything else is working properly, you may be able to
+		// pass this one with no additional work.
+		model.move(new Location(1, 2), new Location(0, 2));
+		model.move(new Location(1, 3), new Location(1, 2));
+		// The next move would cause an earlier version of the program to crash
+		model.move(new Location(0, 2), new Location(0, 3));
+	}
+
+	@Test
+	public void testMoveBetweenReserves() {
+		// This test was added to help find a bug in an earlier version of the
+		// program. If everything else is working properly, you may be able to
+		// pass this one with no additional work.
+		// Arrange so that white has a piece in reserves
+		model.move(new Location(2, 4), new Location(3, 4));
+		model.move(new Location(3, 3), new Location(3, 4));
+		model.move(new Location(3, 5), new Location(3, 4));
+		model.move(new Location(2, 5), new Location(2, 4));
+		model.move(new Location(4, 4), new Location(3, 4));
+		model.move(new Location(2, 4), new Location(3, 4));
+		model.move(new Location(3, 6), new Location(3, 7));
+		// It should not be legal to move from white's reserves to black's
+		assertFalse(model.isLegalMove(FocusModel.RESERVES_LOCATIONS[FocusModel.WHITE],
+				FocusModel.RESERVES_LOCATIONS[FocusModel.BLACK]));
+	}
 }
