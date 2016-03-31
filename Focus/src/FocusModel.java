@@ -101,19 +101,19 @@ public class FocusModel {
 		return true;
 	}
 
-    /**
-     * Returns true if it is legal to move from source to destination. Assumes
-     * source is a legal source.
-     */
-    public boolean isLegalMove(Location source, Location destination) {
-	int d = source.getDistanceTo(destination);
-	return (destination.getRow() >= 0) // Can't move to reserves
-	    && (d > 0) // Can't move to same place
-	    // The rest checks that source has enough pieces
-	    && (source == RESERVES_LOCATIONS[BLACK]
-		|| source == RESERVES_LOCATIONS[WHITE]
-		|| d <= getPile(source).size());
-    }
+	/**
+	 * Returns true if it is legal to move from source to destination. Assumes
+	 * source is a legal source.
+	 */
+	public boolean isLegalMove(Location source, Location destination) {
+		int d = source.getDistanceTo(destination);
+		return (destination.getRow() >= 0) // Can't move to reserves
+				&& (d > 0) // Can't move to same place
+				// The rest checks that source has enough pieces
+				&& (source == RESERVES_LOCATIONS[BLACK]
+					|| source == RESERVES_LOCATIONS[WHITE]
+					|| d <= getPile(source).size());
+	}
 
 	/**
 	 * Returns true if the current player can move from source (which might be
@@ -147,6 +147,10 @@ public class FocusModel {
 	 * destination and resolves any consequences.
 	 */
 	public void move(Location source, Location destination) {
+//		System.out.println("Moving from " + source.getRow() + "," + source.getColumn() + " to "
+//				+ destination.getRow() + "," + destination.getColumn());
+//		System.out.println("Source: " + getPile(source));
+//		System.out.println("Destination: " + getPile(destination));
 		Deque<Integer> hand = new Deque<Integer>();
 		int n = 1;
 		Deque<Integer> sourcePile = null;
@@ -160,6 +164,7 @@ public class FocusModel {
 				sourcePile = reserves[WHITE];
 			}
 		}
+//		System.out.println("sourcePile: " + sourcePile);
 		for (int i = 0; i < n; i++) {
 			hand.addFront(sourcePile.removeBack());
 		}
