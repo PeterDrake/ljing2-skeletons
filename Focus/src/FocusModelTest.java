@@ -184,4 +184,5 @@ public class FocusModelTest {
 		assertFalse(model.isLegalMove(FocusModel.RESERVES_LOCATIONS[FocusModel.WHITE],
 				FocusModel.RESERVES_LOCATIONS[FocusModel.BLACK]));
 	}
+
 }
