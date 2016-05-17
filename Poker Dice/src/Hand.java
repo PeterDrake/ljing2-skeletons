@@ -133,8 +133,8 @@ public class Hand {
 	 * Returns a five-digit number whose digits are the numbers in this hand in
 	 * decreasing order.
 	 * 
-	 * Assumes this hand is not something better than three of a kind (e.g., a
-	 * full house).
+	 * Assumes this hand is not something better than high card (e.g., one
+	 * pair).
 	 */
 	public int highCardScore() {
 		// TODO You have to write this
@@ -154,8 +154,7 @@ public class Hand {
 	 * is the paired number and b, c, and d are the single numbers in decreasing
 	 * order. Otherwise returns -1.
 	 * 
-	 * Assumes this hand is not something better than three of a kind (e.g., a
-	 * full house).
+	 * Assumes this hand is not something better than one pair (e.g., two pair).
 	 */
 	public int onePairScore() {
 		// TODO You have to write this
@@ -213,8 +212,8 @@ public class Hand {
 	 * where a is the higher paired number, b is the lower paired number, and c
 	 * is the single number. Otherwise returns -1.
 	 * 
-	 * Assumes this hand is not something better than three of a kind (e.g., a
-	 * full house).
+	 * Assumes this hand is not something better than two pair (e.g., three of a
+	 * kind).
 	 */
 	public int twoPairScore() {
 		// TODO You have to write this
