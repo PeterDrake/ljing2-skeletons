@@ -70,18 +70,6 @@ public class MazeTest {
 		assertTrue(passages[1][2][Maze.EAST]);
 		assertFalse(passages[2][2][Maze.WEST]);
 		assertFalse(passages[1][2][Maze.NORTH]);
-		Maze.addPassage(passages, new int[] { 1, 2 }, new int[] { 2, 2 });
-		assertTrue(passages[1][2][Maze.EAST]);
-		assertFalse(passages[2][2][Maze.WEST]);
-		assertFalse(passages[1][2][Maze.NORTH]);
-		Maze.addPassage(passages, new int[] { 1, 2 }, new int[] { 2, 2 });
-		assertTrue(passages[1][2][Maze.EAST]);
-		assertFalse(passages[2][2][Maze.WEST]);
-		assertFalse(passages[1][2][Maze.NORTH]);
-		Maze.addPassage(passages, new int[] { 1, 2 }, new int[] { 2, 2 });
-		assertTrue(passages[1][2][Maze.EAST]);
-		assertFalse(passages[2][2][Maze.WEST]);
-		assertFalse(passages[1][2][Maze.NORTH]);
 	}
 
 	@Test
