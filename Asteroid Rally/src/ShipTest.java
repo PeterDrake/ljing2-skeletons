@@ -6,9 +6,9 @@ import org.junit.Test;
 public class ShipTest {
 
 	public static final double DELTA = 0.001;
-	
+
 	private Ship ship;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		ship = new Ship(0.5, 0.5, 0.0);
@@ -24,6 +24,9 @@ public class ShipTest {
 		ship.drift();
 		assertEquals(0.6, e.getX(), DELTA);
 		assertEquals(0.5, e.getY(), DELTA);
+		// Merely changing the direction the ship is facing should not change
+		// the direction it is drifting
+		ship.rotate(Math.PI / 2);
 		ship.drift();
 		assertEquals(0.7, e.getX(), DELTA);
 		assertEquals(0.5, e.getY(), DELTA);
