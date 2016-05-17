@@ -17,7 +17,7 @@ public class TextAdventure {
 	public TextAdventure() {
 		// Create rooms
 		Room entrance = new Room("entrance",
-				"a cramped natural passage, filled with dripping stalagtites");
+				"a cramped natural passage, filled with dripping stalactites");
 		Room hall = new Room("hall", "a vast hall with a vaulted stone ceiling");
 		Room armory = new Room("armory", "an abandoned armory");
 		Room lair = new Room("lair",

@@ -26,7 +26,7 @@ public class RoomTest {
 	@Test
 	public void testAddNeighbor() {
 		Room entrance = new Room("entrance",
-				"a cramped natural passage, filled with dripping stalagtites");
+				"a cramped natural passage, filled with dripping stalactites");
 		hall.addNeighbor("south", entrance);
 		assertSame(entrance, hall.getNeighbor("south"));
 	}
