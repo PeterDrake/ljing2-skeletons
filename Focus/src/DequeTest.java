@@ -115,4 +115,10 @@ public class DequeTest {
 		assertEquals("<a, b, c>", d.toString());
 	}
 
+	@Test
+	public void testImplementsIterable() {
+		// This test will not compile if Deque does not implement Iterable
+		Iterable<String> iter = new Deque<String>();
+	}
+
 }
