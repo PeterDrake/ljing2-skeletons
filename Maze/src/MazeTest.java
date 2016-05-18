@@ -13,7 +13,7 @@ public class MazeTest {
 	public void testContains() {
 		int[][] list = { { 1, 2 }, { 3, 4 }, { 4, 3 } };
 		assertTrue(Maze.contains(new int[] { 3, 4 }, list, list.length));
-		assertFalse(Maze.contains(new int[] { 2, 1 }, list, list.length));
+		assertFalse(Maze.contains(new int[] { 2, 2 }, list, list.length));
 		assertFalse(Maze.contains(new int[] { 4, 3 }, list, 2));
 	}
 
