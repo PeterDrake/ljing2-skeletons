@@ -70,14 +70,13 @@ public class TicTacToe {
 				board[x][y] = ' ';
 			}
 		}
-		StdDraw.setXscale(-0.5, 2.5);
-		StdDraw.setYscale(-0.5, 2.5);
-		char player = 'X';
-		draw(board, player);
+		StdDraw.setScale(-0.5, 2.5);
+		char currentPlayer = 'X';
+		draw(board, currentPlayer);
 		while (!gameOver(board)) {
-			handleMouseClick(board, player);
-			player = opposite(player);
-			draw(board, player);
+			handleMouseClick(board, currentPlayer);
+			currentPlayer = opposite(currentPlayer);
+			draw(board, currentPlayer);
 		}
 	}
 
