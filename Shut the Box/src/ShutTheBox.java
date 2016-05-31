@@ -3,11 +3,11 @@ public class ShutTheBox {
 	public static void main(String[] args) {
 		StdOut.println("Shut the Box");
 		StdOut.println();
-		StdOut.println("This game involves a box with nine numbered levers:");
+		StdOut.println("This game involves a box with nine numbered levers, all initially open:");
 		StdOut.println();
 		StdOut.println("123456789");
 		StdOut.println();
-		StdOut.println("Your goal is to close all of them:");
+		StdOut.println("Your goal is to close all of them, leaving the game in this state:");
 		StdOut.println();
 		StdOut.println("---------");
 		StdOut.println();
