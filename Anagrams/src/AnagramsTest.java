@@ -5,23 +5,35 @@ import org.junit.Test;
 public class AnagramsTest {
 
 	@Test
-	public void testContains() {
+	public void containsAcceptsWordInDictionary() {
 		String[] dictionary = {"cat", "dog"};
 		assertTrue(Anagrams.contains("cat", dictionary));
-		assertFalse(Anagrams.contains("snake", dictionary));
+	}
+	
+	@Test
+	public void containsRejectsWordNotInDictionary() {
+		String[] dictionary = {"cat", "dog"};
+		assertFalse(Anagrams.contains("snake", dictionary));		
 	}
 
 	@Test
-	public void testSort() {
+	public void sortAlphabetizes() {
 		char[] letters = "scrambled".toCharArray();
 		Anagrams.sort(letters);
 		assertArrayEquals("abcdelmrs".toCharArray(), letters);
 	}
 	
 	@Test
-	public void testRandomWord() {
+	public void randomWordReturnsAWordFromDictionary() {
+		String[] dictionary = { "cat", "dog", "bird" };
+		String word = Anagrams.randomWord(dictionary);
+		assertTrue(word.equals("cat") || word.equals("dog") || word.equals("bird"));
+	}
+
+	@Test
+	public void allWordsInDictionaryAreEquallyLikely() {
 		// Make a tiny dictionary
-		String[] dictionary = { "foo", "bar", "quux" };
+		String[] dictionary = { "cat", "dog", "bird" };
 		int[] counts = new int[dictionary.length];
 		// Many times, choose a random word from this dictionary
 		for (int i = 0; i < 5000; i++) {
@@ -41,16 +53,21 @@ public class AnagramsTest {
 	}
 
 	@Test
-	public void testCopy() {
+	public void resultOfCopyHasSameCharacters() {
 		char[] a = "abcde".toCharArray();
 		char[] b = Anagrams.copy(a);
-		a[2] = 'X';
-		assertArrayEquals("abXde".toCharArray(), a);
-		assertArrayEquals("abcde".toCharArray(), b);
+		assertArrayEquals(a, b);
 	}
 
 	@Test
-	public void testScramble() {
+	public void resultOfCopyIsNotSameObjectAsOriginal() {
+		char[] a = "abcde".toCharArray();
+		char[] b = Anagrams.copy(a);
+		assertNotSame(a, b);
+	}
+
+	@Test
+	public void scrambleMakesAllPermutationsEquallyLikely() {
 		// This test is inspired by experiments 1.1.36 and 1.1.37 in Sedgewick
 		// and Wayne, Algorithms, 4th edition. It tests whether, over many
 		// scrambles, each letter is equally likely to end up in each position. It
@@ -81,12 +98,27 @@ public class AnagramsTest {
 	}
 
 	@Test
-	public void testIsCorrect() {
-		String[] dictionary = {"act", "banana", "cat"};
+	public void isCorrectAcceptsCorrectAnswer() {
+		String[] dictionary = {"act", "banana", "bonobo", "cat"};
 		assertTrue(Anagrams.isCorrect("banana", "banana", dictionary));
+	}
+
+	@Test
+	public void isCorrectRejectsWordNotUsingSameLetters() {
+		String[] dictionary = {"act", "banana", "bonobo", "cat"};
 		assertFalse(Anagrams.isCorrect("bonobo", "banana", dictionary));
-		assertTrue(Anagrams.isCorrect("act", "cat", dictionary));
-		assertFalse(Anagrams.isCorrect("cta", "cat", dictionary));
+	}
+	
+	@Test
+	public void isCorrectAcceptsAlternateSolution() {
+		String[] dictionary = {"act", "banana", "bonobo", "cat"};
+		assertTrue(Anagrams.isCorrect("act", "cat", dictionary));		
+	}
+	
+	@Test
+	public void isCorrectRejectsWordNotInDictionary() {
+		String[] dictionary = {"act", "banana", "bonobo", "cat"};
+		assertFalse(Anagrams.isCorrect("cta", "cat", dictionary));				
 	}
 
 }
