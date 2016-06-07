@@ -1,12 +1,10 @@
 /** A word game. */
 public class Snowman {
 
-	/** 
-	 * Returns true if known contains no underscores.
-	 * 
-	 * @param known What the player has already learned (letters or underscores).
+	/**
+	 * Returns true if word contains letter.
 	 */
-	public static boolean complete(char[] known) {
+	public static boolean contains(String word, char letter) {
 		// TODO You have to write this
 		return false;
 	}
@@ -14,9 +12,12 @@ public class Snowman {
 	/**
 	 * Draws the state of the game.
 	 * 
-	 * @param guesses Number of guesses the player has left.
-	 * @param known What the player has already learned (letters or underscores).
-	 * @param word The correct word.
+	 * @param guesses
+	 *            Number of guesses the player has left.
+	 * @param known
+	 *            What the player has already learned (letters or underscores).
+	 * @param word
+	 *            The correct word.
 	 */
 	public static void draw(int guesses, char[] known, String word) {
 		StdDraw.clear();
@@ -28,7 +29,7 @@ public class Snowman {
 		StdDraw.text(0.5, 0.2, s);
 		if (guesses == 0) {
 			StdDraw.text(0.5, 0.1, "The word was '" + word + "'. Press any key to play again.");
-		} else if (complete(known)) {
+		} else if (isComplete(known)) {
 			StdDraw.text(0.5, 0.1, "You win! Press any key to play again.");
 		} else {
 			StdDraw.text(0.5, 0.1, guesses + " guesses left. Type a letter.");
@@ -37,14 +38,21 @@ public class Snowman {
 	}
 
 	/**
-	 * Returns true if letter occurs at least once in word. The corresponding
-	 * elements of known are set to letter.
-	 * 
-	 * @param letter The letter the player has just guessed.
-	 * @param known What the player has already learned (letters or underscores).
-	 * @param word The correct word.
+	 * Modified known, filling in all instances of letter found in word. For
+	 * example, if known is {'a', '_', '_', 'l', '_'}, word is "apple", and
+	 * letter is 'p', known becomes {'a', 'p', 'p', 'l', '_'}.
 	 */
-	public static boolean found(char letter, String word, char[] known) {
+	public static void fillIn(char[] known, String word, char letter) {
+		// TODO You have to write this
+	}
+
+	/**
+	 * Returns true if known contains no underscores.
+	 * 
+	 * @param known
+	 *            What the player has already learned (letters or underscores).
+	 */
+	public static boolean isComplete(char[] known) {
 		// TODO You have to write this
 		return false;
 	}
@@ -59,13 +67,15 @@ public class Snowman {
 			for (int i = 0; i < known.length; i++) {
 				known[i] = '_';
 			}
-			while (guesses > 0 && !complete(known)) {
+			while (guesses > 0 && !isComplete(known)) {
 				draw(guesses, known, word);
 				while (!StdDraw.hasNextKeyTyped()) {
 					// Wait for keypress
 				}
 				char letter = StdDraw.nextKeyTyped();
-				if (!found(letter, word, known)) {
+				if (contains(word, letter)) {
+					fillIn(known, word, letter);
+				} else {
 					guesses--;
 				}
 			}

@@ -1,34 +1,56 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
-import java.util.*;
 
 public class SnowmanTest {
 
 	@Test
-	public void testComplete() {
-		// complete() should only return true if the char[] passed to it
-		// contains no underscores
-		assertFalse(Snowman.complete("_oobar".toCharArray()));
-		assertFalse(Snowman.complete("foo_ar".toCharArray()));
-		assertFalse(Snowman.complete("fooba_".toCharArray()));
-		assertTrue(Snowman.complete("foobar".toCharArray()));
+	public void containsAcceptsPresentLetter() {
+		assertTrue(Snowman.contains("snowman", 'o'));
+	}
+	
+	@Test
+	public void containsRejectsAbsentLetter() {
+		assertFalse(Snowman.contains("snowman", 'e'));
+	}
+		
+	@Test
+	public void isCompleteAcceptsCompleteWord() {
+		assertTrue(Snowman.isComplete("snowman".toCharArray()));
 	}
 
 	@Test
-	public void testFound() {
-		char[] known = "______".toCharArray();
-		assertFalse(Snowman.found('e', "foobar", known));
-		assertTrue(Arrays.equals("______".toCharArray(), known));
-		// When the letter is present, found() should return true
-		assertTrue(Snowman.found('o', "foobar", known));
-		// found() should also modify the char[] that was passed in
-		assertTrue(Arrays.equals("_oo___".toCharArray(), known));
+	public void isCompleteRejectsArrayWithUnderscoreAtBeginning() {
+		assertFalse(Snowman.isComplete("_nowman".toCharArray()));
+	}
+	
+	@Test
+	public void isCompleteRejectsArrayWithUnderscoreInMiddle() {
+		assertFalse(Snowman.isComplete("sno_man".toCharArray()));
+	}
+	
+	@Test
+	public void isCompleteRejectsArrayWithUnderscoreAtEnd() {
+		assertFalse(Snowman.isComplete("snowma_".toCharArray()));
+	}
+	
+	@Test
+	public void fillInFillsInAllCopiesOfPresentLetter() {
+		char[] known = "s______".toCharArray();
+		Snowman.fillIn(known, "snowman", 'n');
+		assertArrayEquals("sn____n".toCharArray(), known);
 	}
 
 	@Test
-	public void testRandomWord() {
+	public void randomWordReturnsAWordFromDictionary() {
+		String[] dictionary = { "cat", "dog", "bird" };
+		String word = Snowman.randomWord(dictionary);
+		assertTrue(word.equals("cat") || word.equals("dog") || word.equals("bird"));
+	}
+
+	@Test
+	public void allWordsInDictionaryAreEquallyLikely() {
 		// Make a tiny dictionary
-		String[] dictionary = { "foo", "bar", "quux" };
+		String[] dictionary = { "cat", "dog", "bird" };
 		int[] counts = new int[dictionary.length];
 		// Many times, choose a random word from this dictionary
 		for (int i = 0; i < 5000; i++) {
