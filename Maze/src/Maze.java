@@ -34,7 +34,7 @@ public class Maze {
 
 	/**
 	 * Returns a new array of pairs containing start followed by all of the
-	 * locations in list.
+	 * elements in list.
 	 */
 	public static int[][] addToFront(int[] start, int[][] list) {
 		// TODO You have to write this
@@ -117,7 +117,7 @@ public class Maze {
 	 *            the number of valid elements in unexplored. Unexplored is
 	 *            "resized" by changing this number.
 	 * @param here
-	 *            the location that was expanded.
+	 *            the location from which a neighbor is sought.
 	 * @param direction
 	 *            the direction to expand location, one of NORTH, SOUTH, EAST,
 	 *            or WEST.
@@ -137,7 +137,8 @@ public class Maze {
 	 * Chooses "here" to be either lastExploredLocation (if it is not null) or a
 	 * random location in frontier. If possible, adds a passage from "here" to a
 	 * location "there" in unexplored, then moves "there" from unexplored to
-	 * frontier. If not, moves "here" from frontier to done.
+	 * frontier. If not, moves "here" from frontier to done. Returns "there", or
+	 * null if no new location was explored.
 	 * 
 	 * @param passages
 	 *            passages[x][y][direction] is true if there is a passage from
@@ -156,6 +157,8 @@ public class Maze {
 	 *            arrays. The arrays are "resized" by changing these elements.
 	 * @param lastExploredLocation
 	 *            the last location that was explored or null.
+	 * @return the newly explored location (or null if no new location was
+	 *         explored).
 	 */
 	public static int[] expandMaze(boolean[][][] passages, int[][] done, int[][] frontier, int[][] unexplored,
 			int[] counts, int[] lastExploredLocation) {
