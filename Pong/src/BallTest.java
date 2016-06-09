@@ -18,25 +18,24 @@ public class BallTest {
 	}
 
 	@Test
-	public void testGetX() {
+	public void storesInitialX() {
 		assertEquals(0.3, ball.getX(), DELTA);
 	}
 
 	@Test
-	public void testGetY() {
+	public void storesInitialY() {
 		assertEquals(0.4, ball.getY(), DELTA);
 	}
 
 	@Test
-	public void testMove() {
+	public void moves() {
 		ball.move(paddles);
 		assertEquals(0.4, ball.getX(), DELTA);
 		assertEquals(0.2, ball.getY(), DELTA);		
 	}
 
 	@Test
-	public void testFloor() {
-		// The ball should bounce off the ceiling
+	public void bouncesOffFloor() {
 		ball = new Ball(0.5, 0.2, 0.1, -0.3);
 		ball.move(paddles);
 		assertEquals(0.6, ball.getX(), DELTA);
@@ -47,8 +46,7 @@ public class BallTest {
 	}
 
 	@Test
-	public void testCeiling() {
-		// The ball should bounce off the ceiling
+	public void bouncesOffCeiling() {
 		ball = new Ball(0.5, 1.0 - 0.2, 0.1, 0.3);
 		ball.move(paddles);
 		assertEquals(0.6, ball.getX(), DELTA);
@@ -59,24 +57,21 @@ public class BallTest {
 	}
 
 	@Test
-	public void testMissRight() {
-		// If it misses the right paddle, the ball should leave the playing area
+	public void movesOffRightSide() {
 		ball = new Ball(0.9, 0.9, 0.2, 0.0);
 		ball.move(paddles);
 		assertEquals(1.1, ball.getX(), DELTA);
 	}
 	
 	@Test
-	public void testMissLeft() {
-		// If it misses the left paddle, the ball should leave the playing area
+	public void movesOffLeftSide() {
 		ball = new Ball(0.1, 0.9, -0.2, 0.0);
 		ball.move(paddles);
 		assertEquals(-0.1, ball.getX(), DELTA);
 	}
 	
 	@Test
-	public void testHitRight() {
-		// The ball should bounce off the right paddle
+	public void bouncesOffRightPaddle() {
 		ball = new Ball(0.9, 0.95, 0.2, -0.1);
 		paddles[1] = new Paddle(1.0 - (2.0 * Paddle.HALF_HEIGHT));
 		ball.move(paddles);
@@ -88,8 +83,7 @@ public class BallTest {
 	}
 
 	@Test
-	public void testHitLeft() {
-		// The ball should bounce off the left paddle
+	public void bouncesOffLeftPaddle() {
 		ball = new Ball(0.1, 0.7 - (0.9 * Paddle.HALF_HEIGHT), -0.3, 0.0);
 		ball.move(paddles);
 		assertEquals(0.2, ball.getX(), DELTA);

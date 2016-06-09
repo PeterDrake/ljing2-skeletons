@@ -15,31 +15,28 @@ public class PaddleTest {
 	}
 
 	@Test
-	public void testGetY() {
+	public void storesY() {
 		assertEquals(0.5, paddle.getY(), DELTA);
 	}
 
 	@Test
-	public void testMove() {
+	public void moves() {
 		paddle.move(0.2);
 		assertEquals(0.7, paddle.getY(), DELTA);
 	}
 
 	@Test
-	public void testFloor() {
-		// It should not be possible to move the paddle past the floor
+	public void doesNotMovePastFloor() {
 		paddle = new Paddle(Paddle.HALF_HEIGHT + 0.1);
 		paddle.move(-0.2);
 		assertEquals(Paddle.HALF_HEIGHT, paddle.getY(), DELTA);
 	}
 
 	@Test
-	public void testCeiling() {
-		// It should not be possible to move the paddle past the ceiling
+	public void doesNotMovePastCeiling() {
 		paddle = new Paddle(1.0 - Paddle.HALF_HEIGHT - 0.1);
 		paddle.move(0.2);
 		assertEquals(1.0 - Paddle.HALF_HEIGHT, paddle.getY(), DELTA);
 	}
-	
-	
+
 }
