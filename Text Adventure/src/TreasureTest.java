@@ -13,18 +13,18 @@ public class TreasureTest {
 	}
 
 	@Test
-	public void testGetName() {
+	public void storesName() {
 		assertEquals("diamond", diamond.getName());
 	}
 
 	@Test
-	public void testGetDescription() {
-		assertEquals("a huge, glittering diamond", diamond.getDescription());
+	public void storesValue() {
+		assertEquals(10, diamond.getValue());
 	}
 
 	@Test
-	public void testGetValue() {
-		assertEquals(10, diamond.getValue());
+	public void storesDescription() {
+		assertEquals("a huge, glittering diamond", diamond.getDescription());
 	}
 
 }

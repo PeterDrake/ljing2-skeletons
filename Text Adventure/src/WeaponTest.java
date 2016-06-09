@@ -13,18 +13,18 @@ public class WeaponTest {
 	}
 
 	@Test
-	public void testGetName() {
+	public void storesName() {
 		assertEquals("a sword", sword.getName());
 	}
 
 	@Test
-	public void testGetDescription() {
-		assertEquals("a trusty steel shortsword", sword.getDescription());
+	public void storesDamage() {
+		assertEquals(3, sword.getDamage());
 	}
 
 	@Test
-	public void testGetDamage() {
-		assertEquals(3, sword.getDamage());
+	public void storesDescription() {
+		assertEquals("a trusty steel shortsword", sword.getDescription());
 	}
 
 }

@@ -13,18 +13,18 @@ public class MonsterTest {
 	}
 
 	@Test
-	public void testGetName() {
+	public void storesName() {
 		assertEquals("wolf", wolf.getName());
 	}
 
 	@Test
-	public void testGetDescription() {
-		assertEquals("a ferocious, snarling wolf", wolf.getDescription());
+	public void storesArmor() {
+		assertEquals(2, wolf.getArmor());
 	}
 
 	@Test
-	public void testGetArmor() {
-		assertEquals(2, wolf.getArmor());
+	public void storesDescription() {
+		assertEquals("a ferocious, snarling wolf", wolf.getDescription());
 	}
 
 }

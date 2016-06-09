@@ -13,18 +13,18 @@ public class RoomTest {
 	}
 
 	@Test
-	public void testGetName() {
+	public void storesName() {
 		assertEquals("hall", hall.getName());
 	}
 
 	@Test
-	public void testGetDescription() {
+	public void storesDescription() {
 		assertEquals("a vast hall with a vaulted stone ceiling",
 				hall.getDescription());
 	}
 
 	@Test
-	public void testAddNeighbor() {
+	public void addsNeighbor() {
 		Room entrance = new Room("entrance",
 				"a cramped natural passage, filled with dripping stalactites");
 		hall.addNeighbor("south", entrance);
@@ -32,7 +32,7 @@ public class RoomTest {
 	}
 
 	@Test
-	public void testListExits() {
+	public void listsExits() {
 		// We're adding null neighbors because it doesn't matter what they are,
 		// just that there are exits in those directions
 		hall.addNeighbor("south", null);
@@ -42,8 +42,12 @@ public class RoomTest {
 	}
 
 	@Test
-	public void testSetTreasure() {
-		assertNull(hall.getTreasure());
+	public void treasureIsInitiallyNull() {
+		assertNull(hall.getTreasure());		
+	}
+
+	@Test
+	public void setsTreasure() {
 		Treasure diamond = new Treasure("diamond", 10,
 				"a huge, glittering diamond");
 		hall.setTreasure(diamond);
@@ -51,11 +55,27 @@ public class RoomTest {
 	}
 
 	@Test
-	public void testSetMonster() {
+	public void monsterIsInitiallyNull() {
 		assertNull(hall.getMonster());
+	}
+
+	@Test
+	public void testSetMonster() {
 		Monster wolf = new Monster("wolf", 2, "a ferocious, snarling wolf");
 		hall.setMonster(wolf);
 		assertSame(wolf, hall.getMonster());
 	}
 
+	@Test
+	public void weaponIsInitiallyNull() {
+		assertNull(hall.getWeapon());
+	}
+
+	@Test
+	public void testSetweapon() {
+		Weapon axe = new Weapon("axe", 5, "a mighty battle axe");
+		hall.setWeapon(axe);
+		assertSame(axe, hall.getWeapon());
+	}
+	
 }
