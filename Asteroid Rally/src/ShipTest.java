@@ -15,12 +15,17 @@ public class ShipTest {
 	}
 
 	@Test
-	public void testDrift() {
-		ship.accelerate(0.1);
+	public void storesExtent() {
 		Extent e = ship.getExtent();
 		assertEquals(0.5, e.getX(), DELTA);
 		assertEquals(0.5, e.getY(), DELTA);
-		assertEquals(0.025, e.getRadius(), DELTA);
+		assertEquals(0.025, e.getRadius(), DELTA);		
+	}
+
+	@Test
+	public void drifts() {
+		Extent e = ship.getExtent();
+		ship.accelerate(0.1);
 		ship.drift();
 		assertEquals(0.6, e.getX(), DELTA);
 		assertEquals(0.5, e.getY(), DELTA);
@@ -31,9 +36,30 @@ public class ShipTest {
 		assertEquals(0.7, e.getX(), DELTA);
 		assertEquals(0.5, e.getY(), DELTA);
 	}
+	
+	@Test
+	public void accelerationDoesNotDirectlyMoveShip() {
+		Extent e = ship.getExtent();
+		ship.accelerate(0.1);
+		assertEquals(0.5, e.getX(), DELTA);
+		assertEquals(0.5, e.getY(), DELTA);
+	}
 
 	@Test
-	public void testWrapAround() {
+	public void rotationDoesNotChangeDirectionOfDrift() {
+		ship.accelerate(0.1);
+		Extent e = ship.getExtent();
+		ship.drift();
+		// Merely changing the direction the ship is facing should not change
+		// the direction it is drifting
+		ship.rotate(Math.PI / 2);
+		ship.drift();
+		assertEquals(0.7, e.getX(), DELTA);
+		assertEquals(0.5, e.getY(), DELTA);
+	}
+
+	@Test
+	public void wrapsAroundEdgeOfPlayArea() {
 		ship.rotate(Math.PI * 1.0 / 2); // Point north
 		ship.accelerate(0.1);
 		Extent e = ship.getExtent();
@@ -45,7 +71,7 @@ public class ShipTest {
 	}
 
 	@Test
-	public void testAngularDrift() {
+	public void driftsAtAnAngle() {
 		ship.rotate(Math.atan(3.0 / 4) + Math.PI);
 		ship.accelerate(0.5);
 		Extent e = ship.getExtent();

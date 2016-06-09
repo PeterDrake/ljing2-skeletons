@@ -15,13 +15,13 @@ public class FlagTest {
 	}
 
 	@Test
-	public void testGetExtent() {
+	public void storesExtent() {
 		assertEquals(0.6, flag.getExtent().getY(), DELTA);
 		assertEquals(0.01, flag.getExtent().getRadius(), DELTA);
 	}
 
 	@Test
-	public void testSetHitByShip() {
+	public void storesHitByShip() {
 		assertFalse(flag.hasBeenHitByShip1());
 		assertFalse(flag.hasBeenHitByShip2());
 		flag.setHitByShip2();
