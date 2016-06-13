@@ -13,7 +13,7 @@ public class ArrayStackTest {
 	}
 
 	@Test
-	public void testSize() {
+	public void grows() {
 		assertEquals(0, stack.size());
 		stack.add(23);
 		assertEquals(1, stack.size());
@@ -22,7 +22,7 @@ public class ArrayStackTest {
 	}
 
 	@Test
-	public void testIsEmpty() {
+	public void detectsEmptiness() {
 		assertTrue(stack.isEmpty());
 		stack.add(17);
 		assertFalse(stack.isEmpty());
@@ -34,7 +34,7 @@ public class ArrayStackTest {
 	}
 	
 	@Test
-	public void testRemove() {
+	public void removesLifo() {
 		stack.add(1);
 		stack.add(2);
 		assertEquals(2, stack.remove());
@@ -42,7 +42,7 @@ public class ArrayStackTest {
 	}
 
 	@Test
-	public void testGet() {
+	public void getsItemAtSpecifiedIndex() {
 		stack.add(5);
 		stack.add(38);
 		assertEquals(5, stack.get(0));
@@ -50,7 +50,7 @@ public class ArrayStackTest {
 	}
 
 	@Test
-	public void testIsFull() {
+	public void detectsFullness() {
 		stack.add(1);
 		stack.add(1);
 		stack.add(1);

@@ -13,7 +13,7 @@ public class ArrayQueueTest {
 	}
 
 	@Test
-	public void testSize() {
+	public void grows() {
 		assertEquals(0, queue.size());
 		queue.add(23);
 		assertEquals(1, queue.size());
@@ -22,7 +22,7 @@ public class ArrayQueueTest {
 	}
 
 	@Test
-	public void testIsEmpty() {
+	public void detectsEmptiness() {
 		assertTrue(queue.isEmpty());
 		queue.add(17);
 		assertFalse(queue.isEmpty());
@@ -34,7 +34,7 @@ public class ArrayQueueTest {
 	}
 	
 	@Test
-	public void testRemove() {
+	public void removesFifo() {
 		queue.add(1);
 		queue.add(2);
 		assertEquals(1, queue.remove());
@@ -42,7 +42,7 @@ public class ArrayQueueTest {
 	}
 
 	@Test
-	public void testGet() {
+	public void getsItemAtSpecifiedIndex() {
 		queue.add(5);
 		queue.add(38);
 		assertEquals(5, queue.get(0));
@@ -50,7 +50,7 @@ public class ArrayQueueTest {
 	}
 
 	@Test
-	public void testIsFull() {
+	public void detectsFullness() {
 		queue.add(1);
 		queue.add(1);
 		queue.add(1);
