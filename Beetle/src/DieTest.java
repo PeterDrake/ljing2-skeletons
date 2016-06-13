@@ -29,18 +29,12 @@ public class DieTest {
 	@Test
 	public void noExtraneousNumbersAppear() {
 		Die d = new Die();
-		int[] counts = new int[7];
 		// Roll the die many times
 		for (int i = 0; i < 600; i++) {
 			d.roll();
-			counts[d.getTopFace()]++;
+			assertTrue(d.getTopFace() >= 1);
+			assertTrue(d.getTopFace() <= 6);
 		}
-		// The 1 through 6 should account for all rolls
-		int sum = 0;
-		for (int i = 1; i <= 6; i++) {
-			sum += counts[i];
-		}
-		assertEquals(sum, 600);
 	}
 
 	@Test

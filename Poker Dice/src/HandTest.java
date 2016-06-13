@@ -13,7 +13,7 @@ public class HandTest {
 	}
 
 	@Test
-	public void testRoll() {
+	public void allRollsAreEquallyLikely() {
 		// counts[i][j] is the number of times die i has come up with value j
 		int[][] counts = new int[5][6];
 		// Roll the whole hand many times
@@ -33,7 +33,7 @@ public class HandTest {
 	}
 	
 	@Test
-	public void testSetKeptFlags() {
+	public void storesKeptFlags() {
 		assertFalse(hand.isKept(1));
 		hand.setKept(1, true);
 		assertTrue(hand.isKept(1));
@@ -43,7 +43,7 @@ public class HandTest {
 	}
 	
 	@Test
-	public void testSetAllKept() {
+	public void detectsAllKept() {
 		for (int i = 1; i < 5; i++) {
 			hand.setKept(i, true);
 		}
@@ -53,7 +53,7 @@ public class HandTest {
 	}
 
 	@Test
-	public void testSetKeptEffects() {
+	public void unkeptDiceAreRerolled() {
 		// Mark dice 0 and 3 for keeping
 		hand.setKept(0, true);
 		hand.setKept(3, true);
@@ -80,7 +80,7 @@ public class HandTest {
 	}
 
 	@Test
-	public void testFiveOfAKindScore() {
+	public void scoresFiveOfAKind() {
 		hand.set(2, 3, 2, 2, 2);
 		assertEquals(-1, hand.fiveOfAKindScore());
 		hand.set(4, 4, 4, 4, 4);
@@ -88,49 +88,49 @@ public class HandTest {
 	}
 
 	@Test
-	public void testFourOfAKindScore() {
+	public void scoresFourOfAKind() {
 		// TODO You have to write this
 		fail("You have to write this test");
 	}
 
 	@Test
-	public void testFullHouseScore() {
+	public void scoresFullHouse() {
 		// TODO You have to write this
 		fail("You have to write this test");
 	}
 
 	@Test
-	public void testStraightScore() {
+	public void scoresStraight() {
 		// TODO You have to write this
 		fail("You have to write this test");
 	}
 
 	@Test
-	public void testThreeOfAKindScore() {
+	public void scoresThreeOfAKind() {
 		// TODO You have to write this
 		fail("You have to write this test");
 	}
 
 	@Test
-	public void testTwoPairScore() {
+	public void scoresTwoPair() {
 		// TODO You have to write this
 		fail("You have to write this test");
 	}
 
 	@Test
-	public void testOnePairScore() {
+	public void scoresOnePair() {
 		// TODO You have to write this
 		fail("You have to write this test");
 	}
 
 	@Test
-	public void testHighCardScore() {
+	public void scoresHighCard() {
 		// TODO You have to write this
 		fail("You have to write this test");
 	}
 
 	@Test
-	public void testGetScore() {
+	public void scoresGenerally() {
 		hand.set(2, 2, 2, 2, 2);
 		assertEquals(720000, hand.getScore());
 		hand.set(4, 0, 0, 0, 4);

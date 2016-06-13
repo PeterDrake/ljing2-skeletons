@@ -13,27 +13,31 @@ public class PokerDiceModelTest {
 	}
 
 	@Test
-	public void testConstructor() {
+	public void diceAreNotNull() {
 		assertNotNull(model.getHand(2));
+	}
+	
+	@Test
+	public void diceAreDifferentObjects() {
 		assertNotSame(model.getHand(1), model.getHand(2));
 	}
 
 	@Test
-	public void testGetNumberOfPlayers() {
+	public void storesNumberOfPlayers() {
 		assertEquals(3, model.getNumberOfPlayers());
 		model = new PokerDiceModel(4);
 		assertEquals(4, model.getNumberOfPlayers());
 	}
 
 	@Test
-	public void testAdvanceCurrentPlayer() {
+	public void advancesCurrentPlayer() {
 		assertEquals(0, model.getCurrentPlayer());
 		model.advanceCurrentPlayer();
 		assertEquals(1, model.getCurrentPlayer());
 	}
 
 	@Test
-	public void testTurnOverThreeRolls() {
+	public void turnEndsAfterThreeRolls() {
 		model.roll();
 		model.roll();
 		assertFalse(model.turnOver());
@@ -42,7 +46,7 @@ public class PokerDiceModelTest {
 	}
 
 	@Test
-	public void testTurnOverStayEarly() {
+	public void turnEndsWhenAllDiceKept() {
 		for (int i = 0; i < 5; i++) {
 			model.getHand(0).setKept(i, true);
 		}
@@ -52,7 +56,7 @@ public class PokerDiceModelTest {
 	}
 
 	@Test
-	public void testTurnOverNextPlayer() {
+	public void turnIsNotOverForNewPlayer() {
 		model.roll();
 		model.roll();
 		model.roll();
@@ -62,7 +66,7 @@ public class PokerDiceModelTest {
 	}
 
 	@Test
-	public void testGameOver() {
+	public void gameEndsAfterAllTurns() {
 		model.advanceCurrentPlayer();
 		model.advanceCurrentPlayer();
 		assertFalse(model.gameOver());
@@ -71,7 +75,7 @@ public class PokerDiceModelTest {
 	}
 
 	@Test
-	public void testIsWinner() {
+	public void detectsWinner() {
 		model.getHand(0).set(0, 0, 1, 4, 1);
 		model.getHand(1).set(2, 2, 2, 3, 2);
 		model.getHand(2).set(5, 4, 3, 2, 1);
@@ -81,7 +85,7 @@ public class PokerDiceModelTest {
 	}
 
 	@Test
-	public void testIsWinnerTie() {
+	public void resolvesTies() {
 		model.getHand(0).set(2, 3, 2, 2, 2);
 		model.getHand(1).set(2, 2, 2, 3, 2);
 		model.getHand(2).set(5, 4, 3, 2, 1);
