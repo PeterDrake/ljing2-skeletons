@@ -13,7 +13,7 @@ public class JcfTreeSetTest {
 	}
 
 	@Test
-	public void testAdd() {
+	public void addsItems() {
 		assertFalse(set.contains(8));
 		set.add(8);
 		assertTrue(set.contains(8));
@@ -23,14 +23,14 @@ public class JcfTreeSetTest {
 	}
 
 	@Test
-	public void testRemove() {
+	public void removesItems() {
 		set.add(8);
 		set.remove(8);
 		assertFalse(set.contains(8));
 	}
 
 	@Test
-	public void testManyPuts() {
+	public void addsManyItems() {
 		int[] numbers = new int[1000];
 		for (int i = 0; i < numbers.length; i++) {
 			numbers[i] = StdRandom.uniform(Integer.MAX_VALUE);
@@ -44,7 +44,7 @@ public class JcfTreeSetTest {
 	}
 
 	@Test
-	public void testIteration() {
+	public void iterates() {
 		int[] numbers = {8, 6, 7, 5, 3, 0, 9};
 		for (int n : numbers) {
 			set.add(n);
