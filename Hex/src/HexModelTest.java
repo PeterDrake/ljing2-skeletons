@@ -28,25 +28,25 @@ public class HexModelTest {
 	}
 
 	@Test
-	public void testGetWidth() {
+	public void storesWidth() {
 		assertEquals(4, model.getWidth());
 		model = new HexModel(10);
 		assertEquals(10, model.getWidth());
 	}
 
 	@Test
-	public void testToString() {
+	public void givesProperlyIndentedMultilineString() {
 		assertEquals(" 0 1 2 3 \n0 . . . . 0\n 1 . . . . 1\n  2 . . . . 2\n   3 . . . . 3\n      0 1 2 3 \n", model.toString());
 	}
 
 	@Test
-	public void testSetColor() {
+	public void includesPiecesInString() {
 		model.setColor(2, 3, HexModel.BLACK);
 		assertEquals(" 0 1 2 3 \n0 . . . . 0\n 1 . . . . 1\n  2 . . . # 2\n   3 . . . . 3\n      0 1 2 3 \n", model.toString());
 	}
 
 	@Test
-	public void testSetAndGetColor() {
+	public void storesColor() {
 		assertEquals(HexModel.VACANT, model.getColor(3, 2));
 		model.setColor(3, 2, HexModel.WHITE);
 		assertEquals(HexModel.WHITE, model.getColor(3, 2));
@@ -55,7 +55,7 @@ public class HexModelTest {
 	}
 
 	@Test
-	public void testNeighborWiringInCenter() {
+	public void hasCorrectConnectionsBetweenNeighborsInCenter() {
 		assertEquals(6, model.getNeighborCount(model.getNode(1, 1)));
 		assertTrue(model.getNode(1, 1).isNeighborOf(model.getNode(0, 1)));
 		assertTrue(model.getNode(1, 1).isNeighborOf(model.getNode(0, 2)));
@@ -66,7 +66,7 @@ public class HexModelTest {
 	}
 
 	@Test
-	public void testNeighborWiringAtEdge() {
+	public void hasCorrectConnectionsBetweenNeighborsAtEdge() {
 		assertEquals(4, model.getNeighborCount(model.getNode(3, 3)));
 		assertTrue(model.getNode(3, 3).isNeighborOf(model.getNode(3, 2)));
 		assertTrue(model.getNode(3, 3).isNeighborOf(model.getNode(2, 3)));
@@ -75,13 +75,13 @@ public class HexModelTest {
 	}
 	
 	@Test
-	public void testSentinelsAreDifferent() {
+	public void sentinelsAreDifferentObjects() {
 		assertNotSame(model.getNorth(), model.getSouth());
 		assertNotSame(model.getWest(), model.getEast());
 	}
 	
 	@Test
-	public void testFindWinner() {
+	public void findsWinner() {
 		setUpProblem("# . . .",
 					  "# # # #",
 					   "O O O .",
@@ -94,7 +94,7 @@ public class HexModelTest {
 	}
 
 	@Test
-	public void testGetCurrentPlayer() {
+	public void togglesCurrentPlayer() {
 		assertEquals(HexModel.BLACK, model.getCurrentPlayer());
 		model.playAt(1, 2);
 		assertEquals(HexModel.WHITE, model.getCurrentPlayer());
