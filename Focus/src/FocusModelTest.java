@@ -11,9 +11,8 @@ public class FocusModelTest {
 		model = new FocusModel();
 	}
 
-	/** Test some piles in the initial setup. */
 	@Test
-	public void testGetPile() {
+	public void boardIsSetUpProperly() {
 		Deque<Integer> pile = model.getPile(new Location(1, 6));
 		assertEquals(1, pile.size());
 		assertEquals(new Integer(FocusModel.BLACK), pile.removeFront());
@@ -25,7 +24,7 @@ public class FocusModelTest {
 	}
 	
 	@Test
-	public void testIsOnBoard() {
+	public void detectsSquaresOnBoard() {
 		assertTrue(model.isOnBoard(new Location(4, 5)));
 		assertFalse(model.isOnBoard(new Location(4, 8)));
 		assertFalse(model.isOnBoard(new Location(-1, 5)));
@@ -33,7 +32,7 @@ public class FocusModelTest {
 	}
 
 	@Test
-	public void testIsLegalSource() {
+	public void detectsLegalSource() {
 		assertFalse(model.isLegalSource(new Location(0, 1)));
 		Location there = new Location(3, 0);
 		Deque<Integer> pile = model.getPile(there);
@@ -46,7 +45,7 @@ public class FocusModelTest {
 	}
 
 	@Test
-	public void testIsLegalMove() {
+	public void detectsLegalMove() {
 		Location source = new Location(2, 3);
 		model.getPile(source).addBack(FocusModel.WHITE);
 		model.getPile(source).addBack(FocusModel.BLACK);
@@ -63,7 +62,7 @@ public class FocusModelTest {
 	}
 
 	@Test
-	public void testMove() {
+	public void moves() {
 		Location source = new Location(2, 2);
 		model.getPile(source).addBack(FocusModel.WHITE);
 		model.getPile(source).addBack(FocusModel.WHITE);
@@ -82,7 +81,7 @@ public class FocusModelTest {
 	}
 
 	@Test
-	public void testToggleColorToPlay() {
+	public void togglesColorToPlay() {
 		assertEquals(FocusModel.BLACK, model.getCurrentPlayer());
 		model.toggleColorToPlay();
 		assertEquals(FocusModel.WHITE, model.getCurrentPlayer());
@@ -91,7 +90,7 @@ public class FocusModelTest {
 	}
 
 	@Test
-	public void testCapturesAndReserves() {
+	public void handlesPileOverflow() {
 		Location source = new Location(4, 2);
 		Deque<Integer> s = model.getPile(source);
 		s.addBack(FocusModel.BLACK);
@@ -108,13 +107,13 @@ public class FocusModelTest {
 		model.move(source, destination);
 		assertEquals(5, d.size());
 		assertEquals(1, model.getReserves(FocusModel.BLACK));
-		assertEquals(0, model.getReserves(FocusModel.WHITE));
+		assertEquals(0, model.getReserves(FocusModel.WHITE));		
 	}
 
 	@Test
-	public void testReservesAsLegalSource() {
+	public void acceptsNonEmptyReservesAsLegalSource() {
 		assertFalse(model.isLegalSource(FocusModel.RESERVES_LOCATIONS[FocusModel.BLACK]));
-		testCapturesAndReserves();
+		handlesPileOverflow(); // To set up the situation
 		// Make another move to flip the color to play back to black
 		model.move(new Location(2, 1), new Location(1, 1));
 		assertTrue(model.isLegalSource(FocusModel.RESERVES_LOCATIONS[FocusModel.BLACK]));
@@ -122,9 +121,9 @@ public class FocusModelTest {
 	}
 
 	@Test
-	public void testMoveFromReserves() {
+	public void movesFromReserves() {
 		Location d = new Location(2, 6);
-		testCapturesAndReserves();
+		handlesPileOverflow(); // To set up the situation
 		// Make another move to flip the color to play back to black
 		model.move(new Location(2, 1), new Location(1, 1));
 		assertTrue(model.isLegalMove(FocusModel.RESERVES_LOCATIONS[FocusModel.BLACK], d));
@@ -134,9 +133,9 @@ public class FocusModelTest {
 	}
 
 	@Test
-	public void testIsGameOver() {
+	public void detectsGameOver() {
 		assertFalse(model.isGameOver());
-		testCapturesAndReserves();
+		handlesPileOverflow(); // To set up the situation
 		// Make another move to flip the color to play back to black
 		model.move(new Location(2, 1), new Location(1, 1));
 		// Add white pieces everywhere
@@ -157,7 +156,7 @@ public class FocusModelTest {
 	}
 
 	@Test
-	public void testMoveOntoEmptySquare() {
+	public void movesOntoEmptySquare() {
 		// This test was added to help find a bug in an earlier version of the
 		// program. If everything else is working properly, you may be able to
 		// pass this one with no additional work.
@@ -168,7 +167,7 @@ public class FocusModelTest {
 	}
 
 	@Test
-	public void testMoveBetweenReserves() {
+	public void movesBetweenReserves() {
 		// This test was added to help find a bug in an earlier version of the
 		// program. If everything else is working properly, you may be able to
 		// pass this one with no additional work.

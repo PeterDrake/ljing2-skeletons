@@ -1,5 +1,3 @@
-
-
 import static org.junit.Assert.*;
 import java.util.Iterator;
 import org.junit.Before;
@@ -15,7 +13,7 @@ public class DequeTest {
 	}
 
 	@Test
-	public void testIsEmpty() {
+	public void detectsEmptiness() {
 		assertTrue(deque.isEmpty());
 		deque.addFront(3);
 		assertFalse(deque.isEmpty());
@@ -24,7 +22,7 @@ public class DequeTest {
 	}
 	
 	@Test
-	public void testSize() {
+	public void storesSize() {
 		assertEquals(0, deque.size());
 		deque.addFront(3);
 		assertEquals(1, deque.size());
@@ -37,7 +35,7 @@ public class DequeTest {
 	}
 
 	@Test
-	public void testAddBack() {
+	public void addsToBack() {
 		assertEquals("<>", deque.toString());
 		deque.addBack(3);
 		deque.addBack(7);
@@ -46,7 +44,7 @@ public class DequeTest {
 	}
 
 	@Test
-	public void testAddFront() {
+	public void addsToFront() {
 		assertEquals("<>", deque.toString());
 		deque.addFront(3);
 		deque.addFront(7);
@@ -55,7 +53,7 @@ public class DequeTest {
 	}
 
 	@Test
-	public void testRemoveBack() {
+	public void reomvesFromBack() {
 		deque.addBack(3);
 		deque.addBack(7);
 		deque.addBack(4);
@@ -68,7 +66,7 @@ public class DequeTest {
 	}
 
 	@Test
-	public void testRemoveFront() {
+	public void removesFromFront() {
 		deque.addBack(3);
 		deque.addBack(7);
 		deque.addBack(4);
@@ -81,7 +79,7 @@ public class DequeTest {
 	}
 	
 	@Test
-	public void testAddThenRemove() {
+	public void handlesMultipleAdditionsAndRemovals() {
 		deque.addBack(3);
 		assertEquals(new Integer(3), deque.removeBack());
 		deque.addFront(7);
@@ -90,7 +88,7 @@ public class DequeTest {
 	}
 
 	@Test
-	public void testIterator() {
+	public void iterates() {
 		deque.addBack(3);
 		deque.addBack(7);
 		deque.addBack(4);
@@ -107,7 +105,7 @@ public class DequeTest {
 	}
 
 	@Test
-	public void testGenericity() {
+	public void isGeneric() {
 		Deque<String> d = new Deque<String>();
 		d.addBack("a");
 		d.addBack("b");
@@ -116,8 +114,9 @@ public class DequeTest {
 	}
 
 	@Test
-	public void testImplementsIterable() {
+	public void implementsIterable() {
 		// This test will not compile if Deque does not implement Iterable
+		@SuppressWarnings("unused") // Avoid a compiler warning on next line
 		Iterable<String> iter = new Deque<String>();
 	}
 
