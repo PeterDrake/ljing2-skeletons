@@ -12,24 +12,24 @@ public class QuestionsModelTest {
 	}
 
 	@Test
-	public void testConstructor() {
+	public void hasDefaultInitialTree() {
 		assertEquals(
 				"Does it have a motor?\n  Does it store information?\n    a hard drive\n    a car\n  a giraffe\n",
 				model.toString());
 	}
 
 	@Test
-	public void testGetRoot() {
+	public void getsRoot() {
 		assertEquals("Does it have a motor?", model.getRoot().getKey());
 	}
 
 	@Test
-	public void testGetCurrentNode() {
+	public void getsCurrentNode() {
 		assertSame(model.getRoot(), model.getCurrentNode());
 	}
 
 	@Test
-	public void testDescend() {
+	public void descends() {
 		model.descend(true);
 		assertEquals("Does it store information?", model.getCurrentNode()
 				.getKey());
@@ -38,7 +38,7 @@ public class QuestionsModelTest {
 	}
 
 	@Test
-	public void testAtLeaf() {
+	public void detectsLeaf() {
 		model.descend(true);
 		assertFalse(model.atLeaf());
 		model.descend(false);
@@ -46,7 +46,7 @@ public class QuestionsModelTest {
 	}
 
 	@Test
-	public void testReset() {
+	public void resets() {
 		model.descend(true);
 		model.descend(false);
 		model.reset();
@@ -54,7 +54,7 @@ public class QuestionsModelTest {
 	}
 
 	@Test
-	public void testGetQuestion() {
+	public void getsQuestion() {
 		model.descend(true);
 		assertEquals("Does it store information? (y/n)", model.getQuestion());
 		model.descend(false);
@@ -62,7 +62,7 @@ public class QuestionsModelTest {
 	}
 
 	@Test
-	public void testGetLearningQuestion() {
+	public void getsLearningQuestion() {
 		model.descend(false);
 		assertEquals(
 				"What question would distinguish a fox (y) from a giraffe (n)?",
@@ -70,7 +70,7 @@ public class QuestionsModelTest {
 	}
 
 	@Test
-	public void testLearn() {
+	public void learns() {
 		model.descend(false);
 		model.learn("a lion", "Is it carnivorous?");
 		assertEquals(

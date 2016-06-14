@@ -29,13 +29,13 @@ public class NodeTest {
 	}
 
 	@Test
-	public void testChildGetters() {
+	public void getsChildren() {
 		assertSame(b, a.getLeft());
 		assertSame(e, a.getRight());
 	}
 	
 	@Test
-	public void testIsLeaf() {
+	public void detectsLeaf() {
 		assertFalse(a.isLeaf());
 		assertFalse(b.isLeaf());
 		assertTrue(c.isLeaf());
@@ -44,7 +44,7 @@ public class NodeTest {
 	}
 	
 	@Test
-	public void testHeight() {
+	public void detectsHeight() {
 		assertEquals(2, a.height());
 		assertEquals(1, b.height());
 		assertEquals(0, c.height());
@@ -53,12 +53,12 @@ public class NodeTest {
 	}
 	
 	@Test
-	public void testToString() {
+	public void givesProperlyIndentedMultilineString() {
 		assertEquals("a\n  b\n    c\n    d\n  e\n", a.toString());
 	}
 
 	@Test
-	public void testAlternateConstructor() {
+	public void hasAlternateConstructor() {
 		Node root = new Node("Does it have a motor?",
 				new Node("Does it store information?",
 						new Node("a hard drive"),
@@ -68,7 +68,7 @@ public class NodeTest {
 	}
 	
 	@Test
-	public void testLearn() {
+	public void learns() {
 		Node root = new Node("Does it have a motor?",
 				new Node("Does it store information?",
 						new Node("a hard drive"),
