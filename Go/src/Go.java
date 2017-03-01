@@ -61,7 +61,7 @@ public class Go {
 		int white = model.score(StdDraw.WHITE);
 		StdDraw.text((w / 2.0) - 0.5, w - 0.25,
 				"Black: " + black + "    White: " + white + "+7.5 = " + (white + 7.5));
-		StdDraw.show(0);
+		StdDraw.show();
 	}
 
 	/** Handles a mouse click or keyboard command. */
@@ -86,6 +86,7 @@ public class Go {
 
 	/** Plays the game. */
 	public void run() {
+		StdDraw.enableDoubleBuffering();
 		showRules();
 		StdDraw.setScale(-1.5, model.getBoardWidth() + 0.5);
 		while (!model.gameOver()) {
@@ -104,7 +105,7 @@ public class Go {
 		StdDraw.text(0.4, 0.25, "9");
 		StdDraw.text(0.6, 0.25, "13");
 		StdDraw.text(0.8, 0.25, "19");
-		StdDraw.show(0);
+		StdDraw.show();
 		while (!StdDraw.mousePressed()) {
 			// Wait for mouse press
 		}
@@ -135,7 +136,7 @@ public class Go {
 		StdDraw.text(0.5, 0.3, "The game ends after two consecutive passes.");
 		StdDraw.text(0.5, 0.2, "White gets 7.5 extra points to make up for playing second.");
 		StdDraw.text(0.5, 0.1, "CLICK TO CONTINUE");
-		StdDraw.show(0);
+		StdDraw.show();
 		while (!StdDraw.mousePressed()) {
 			// Wait for mouse press
 		}
