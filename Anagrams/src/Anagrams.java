@@ -35,7 +35,7 @@ public class Anagrams {
 		} else {
 			StdDraw.text(0.5, 0.25, "Type to unscramble the word.");
 		}
-		StdDraw.show(0);
+		StdDraw.show();
 	}
 
 	/**
@@ -72,6 +72,7 @@ public class Anagrams {
 
 	/** Plays the game. */
 	public static void main(String[] args) {
+		StdDraw.enableDoubleBuffering();
 		String[] dictionary = new In("enable1.txt").readAllLines();
 		while (true) {
 			String correct = randomWord(dictionary);
