@@ -48,7 +48,7 @@ public class Railyard {
 		drawBranchCars(model.getBranch(2), 0.3);
 		drawBranchCars(model.getBranch(3), 0.1);
 		drawMainLineCars();
-		StdDraw.show(0);
+		StdDraw.show();
 	}
 
 	/** Draws the cars on a given branch. */
@@ -104,6 +104,7 @@ public class Railyard {
 
 	/** Runs the puzzle. */
 	public void run() {
+		StdDraw.enableDoubleBuffering();
 		while (!model.isSolved()) {
 			draw("Click on " + switchSymbol() + " or a branch at left to build 012345 at right.");
 			handleMouseClick();
