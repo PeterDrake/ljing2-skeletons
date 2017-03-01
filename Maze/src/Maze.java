@@ -85,7 +85,7 @@ public class Maze {
 		// Draw entrance and exit
 		StdDraw.line(0, 0, -1, 0);
 		StdDraw.line(width - 1, width - 1, width, width - 1);
-		StdDraw.show(0);
+		StdDraw.show();
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class Maze {
 		for (int i = 0; i < path.length - 1; i++) {
 			StdDraw.line(path[i][0], path[i][1], path[i + 1][0], path[i + 1][1]);
 		}
-		StdDraw.show(0);
+		StdDraw.show();
 	}
 
 	/**
@@ -193,10 +193,11 @@ public class Maze {
 
 	/** Draws and then solves a maze. */
 	public static void main(String[] args) {
+		StdDraw.enableDoubleBuffering();
 		int width = 20;
 		StdDraw.setXscale(-0.5, width - 0.5);
 		StdDraw.setYscale(-0.5, width - 0.5);
-		StdDraw.show(0);
+		StdDraw.show();
 		boolean[][][] passages = new boolean[width][width][4];
 		// Initially, no locations are done
 		int[][] done = new int[width * width][];
@@ -221,7 +222,8 @@ public class Maze {
 		while (counts[2] > 0) {
 			lastExploredLocation = expandMaze(passages, done, frontier, unexplored, counts, lastExploredLocation);
 			drawMaze(passages);
-			StdDraw.show(25);
+			StdDraw.show();
+			StdDraw.pause(25);
 		}
 		// Solve the maze
 		int[][] solution = solve(passages, new int[] { 0, 0 }, new int[] { width - 1, width - 1 });
