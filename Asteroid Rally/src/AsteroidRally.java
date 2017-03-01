@@ -24,7 +24,8 @@ public class AsteroidRally {
 			drawFlag(f);
 		}
 		// Show the results
-		StdDraw.show(10);
+		StdDraw.show();
+		StdDraw.pause(10);
 	}
 
 	/** Draws a flag. */
@@ -88,6 +89,7 @@ public class AsteroidRally {
 
 	/** Runs the game. */
 	public void run() {
+		StdDraw.enableDoubleBuffering();
 		titleScreen();
 		while (true) {
 			model = new AsteroidRallyModel();
@@ -106,7 +108,7 @@ public class AsteroidRally {
 			}
 			StdDraw.text(0.5, 0.75, w + " player wins!");
 			StdDraw.text(0.5, 0.25, "Press space to play again.");
-			StdDraw.show(0);
+			StdDraw.show();
 			while (!StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_SPACE)) {
 				// Wait for spacebar
 			}
@@ -122,7 +124,7 @@ public class AsteroidRally {
 		StdDraw.text(0.5, 0.3, "Blue player: manevuer with J/I/L.");
 		StdDraw.text(0.5, 0.2, "Avoid rocks, hit all square flags first.");
 		StdDraw.text(0.5, 0.1, "Press space to start.");
-		StdDraw.show(0);
+		StdDraw.show();
 		while (!StdDraw.isKeyPressed(java.awt.event.KeyEvent.VK_SPACE)) {
 			// Wait for spacebar
 		}
