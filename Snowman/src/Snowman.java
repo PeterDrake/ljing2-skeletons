@@ -34,7 +34,7 @@ public class Snowman {
 		} else {
 			StdDraw.text(0.5, 0.1, guesses + " guesses left. Type a letter.");
 		}
-		StdDraw.show(0);
+		StdDraw.show();
 	}
 
 	/**
@@ -59,6 +59,7 @@ public class Snowman {
 
 	/** Runs the game repeatedly. */
 	public static void main(String[] args) {
+		StdDraw.enableDoubleBuffering();
 		String[] dictionary = new In("enable1.txt").readAllLines();
 		while (true) {
 			String word = randomWord(dictionary);
