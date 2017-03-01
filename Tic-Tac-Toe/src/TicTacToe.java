@@ -65,13 +65,13 @@ public class TicTacToe {
 	/** Plays the game. */
 	public static void main(String[] args) {
 		StdDraw.enableDoubleBuffering();
+		StdDraw.setScale(-0.5, 2.5);
 		char[][] board = new char[3][3];
 		for (int x = 0; x < board.length; x++) {
 			for (int y = 0; y < board[x].length; y++) {
 				board[x][y] = ' ';
 			}
 		}
-		StdDraw.setScale(-0.5, 2.5);
 		char currentPlayer = 'X';
 		draw(board, currentPlayer);
 		while (!gameOver(board)) {
