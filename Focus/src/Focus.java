@@ -40,7 +40,7 @@ public class Focus {
 		StdDraw.text(2, 0.5, "Black reserves: " + model.getReserves(FocusModel.BLACK));
 		StdDraw.text(8, 0.5, "White reserves: " + model.getReserves(FocusModel.WHITE));
 		StdDraw.text(5, 1.5, instructions);
-		StdDraw.show(0);
+		StdDraw.show();
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class Focus {
 		StdDraw.text(5.0, 6.0, "Get your pieces on top of the piles.");
 		StdDraw.text(5.0, 4.0, "The first player unable to move loses.");
 		StdDraw.text(5.0, 2.0, "Click to continue.");
-		StdDraw.show(0);
+		StdDraw.show();
 		waitForClick();
 		while (!model.isGameOver()) {
 			draw(getCurrentPlayerName()
