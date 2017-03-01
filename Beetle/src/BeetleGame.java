@@ -44,7 +44,7 @@ public class BeetleGame {
 		StdDraw.square(0.5, 0.3, 0.05);
 		StdDraw.text(0.5, 0.3, "" + die.getTopFace());
 		StdDraw.text(0.5, 0.1, message);
-		StdDraw.show(0);
+		StdDraw.show();
 	}
 
 	/** Draws b at x, y. */
@@ -95,6 +95,7 @@ public class BeetleGame {
 
 	/** Plays the game. */
 	public void run() {
+		StdDraw.enableDoubleBuffering();
 		draw("Click to roll.");
 		while (winner() == -1) {
 			takeTurn();
