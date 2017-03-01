@@ -72,7 +72,7 @@ public class Hex {
 		} else {
 			StdDraw.text(0.5, 0.95, "White to choose a hex. Try to connect left side to right side.");
 		}
-		StdDraw.show(0);
+		StdDraw.show();
 	}
 
 	/** Draws a particular hex. */
@@ -96,6 +96,7 @@ public class Hex {
 	 * Plays the game.
 	 */
 	public void run() {
+		StdDraw.enableDoubleBuffering();
 		while (model.findWinner() == HexModel.VACANT) {
 			draw();
 			while (!StdDraw.mousePressed()) {
