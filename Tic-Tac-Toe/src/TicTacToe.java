@@ -22,7 +22,7 @@ public class TicTacToe {
 		} else {
 			StdDraw.text(1.0, 0.75, player + " to play. Click in a square. Three in a row wins.");
 		}
-		StdDraw.show(0);
+		StdDraw.show();
 	}
 
 	/** Returns true if the game is over. */
@@ -64,6 +64,7 @@ public class TicTacToe {
 
 	/** Plays the game. */
 	public static void main(String[] args) {
+		StdDraw.enableDoubleBuffering();
 		char[][] board = new char[3][3];
 		for (int x = 0; x < board.length; x++) {
 			for (int y = 0; y < board[x].length; y++) {
