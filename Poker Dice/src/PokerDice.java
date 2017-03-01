@@ -24,7 +24,7 @@ public class PokerDice {
 		for (int i = 0; i < model.getNumberOfPlayers(); i++) {
 			drawHand(i);
 		}
-		StdDraw.show(0);
+		StdDraw.show();
 	}
 
 	/**
@@ -108,6 +108,7 @@ public class PokerDice {
 
 	/** Plays the game repeatedly. */
 	public void run() {
+		StdDraw.enableDoubleBuffering();
 		StdDraw.setXscale(-0.5, 5.5);
 		StdDraw.setYscale(-0.5, 5.5);
 		while (true) {
