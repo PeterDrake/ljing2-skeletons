@@ -30,7 +30,7 @@ public class Questions {
 		StdDraw.text(0.5, 0.8, textBeingEntered);
 		double yDecrement = 0.5 / (model.getRoot().height() + 1);
 		drawSubtree(model.getRoot(), 0.5 - yDecrement / 2, yDecrement, 0.0, 1.0);
-		StdDraw.show(0);
+		StdDraw.show();
 	}
 
 	/**
@@ -72,6 +72,7 @@ public class Questions {
 
 	/** Plays games until the user chooses to quit. */
 	public void run() {
+		StdDraw.enableDoubleBuffering();
 		while (true) {
 			// Descend through the tree to a leaf
 			model.reset();
