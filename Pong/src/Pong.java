@@ -27,6 +27,7 @@ public class Pong {
 			StdDraw.text(i, 0.95, model.getScores()[i] + "");
 		}
 		StdDraw.text(0.5, 0.25, message);
+		System.out.println("About to show [" + message + "]");
 		StdDraw.show();
 		StdDraw.pause(25);
 	}
@@ -57,10 +58,8 @@ public class Pong {
 		StdDraw.enableDoubleBuffering();
 		// Add a little padding so that paddles and scores, drawn right at y =
 		// 0.0 or 1.0, are visible
-		StdDraw.setXscale(-0.05, 1.05);
-		StdDraw.setYscale(-0.05, 1.05);
+		StdDraw.setScale(-0.05, 1.05);
 		draw("Left player use A/Z. Right player use K/M.");
-		StdDraw.show();
 		StdDraw.pause(2000);
 		while (!model.gameOver()) {
 			draw("");
