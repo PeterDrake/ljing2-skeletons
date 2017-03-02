@@ -5,7 +5,11 @@ public class Snowman {
 	 * Returns true if word contains letter.
 	 */
 	public static boolean contains(String word, char letter) {
-		// TODO You have to write this
+		for (int i = 0; i < word.length(); i++) {
+			if (word.charAt(i) == letter) {
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -21,7 +25,27 @@ public class Snowman {
 	 */
 	public static void draw(int guesses, char[] known, String word) {
 		StdDraw.clear();
-		// TODO Your drawing code goes here
+		StdDraw.line(0.1, 0.3, 0.9, 0.3); // Ground
+		if (guesses < 6) { // Base
+			StdDraw.circle(0.5, 0.45, 0.15);
+		}
+		if (guesses < 5) { // Torso
+			StdDraw.circle(0.5, 0.7, 0.1);
+		}
+		if (guesses < 4) { // Head
+			StdDraw.circle(0.5, 0.85, 0.05);
+		}
+		if (guesses < 3) { // Left eye
+			StdDraw.filledRectangle(0.48, 0.87, 0.01, 0.01);
+		}
+		if (guesses < 2) { // Right eye
+			StdDraw.filledRectangle(0.52, 0.87, 0.01, 0.01);
+		}
+		if (guesses < 1) { // Nose
+			StdDraw.setPenColor(java.awt.Color.ORANGE);
+			StdDraw.filledPolygon(new double[] { 0.5, 0.5, 0.54 }, new double[] { 0.83, 0.84, 0.835 });
+			StdDraw.setPenColor();
+		}
 		String s = "" + known[0];
 		for (int i = 1; i < known.length; i++) {
 			s += " " + known[i];
@@ -43,7 +67,11 @@ public class Snowman {
 	 * letter is 'p', known becomes {'a', 'p', 'p', 'l', '_'}.
 	 */
 	public static void fillIn(char[] known, String word, char letter) {
-		// TODO You have to write this
+		for (int i = 0; i < word.length(); i++) {
+			if (word.charAt(i) == letter) {
+				known[i] = letter;
+			}
+		}
 	}
 
 	/**
@@ -53,8 +81,12 @@ public class Snowman {
 	 *            What the player has already learned (letters or underscores).
 	 */
 	public static boolean isComplete(char[] known) {
-		// TODO You have to write this
-		return false;
+		for (int i = 0; i < known.length; i++) {
+			if (known[i] == '_') {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/** Runs the game repeatedly. */
@@ -90,8 +122,7 @@ public class Snowman {
 
 	/** Returns a random word from dictionary. */
 	public static String randomWord(String[] dictionary) {
-		// TODO You have to write this
-		return null;
+		return dictionary[StdRandom.uniform(dictionary.length)];
 	}
 
 }
