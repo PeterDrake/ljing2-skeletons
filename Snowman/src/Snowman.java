@@ -38,7 +38,7 @@ public class Snowman {
 	}
 
 	/**
-	 * Modified known, filling in all instances of letter found in word. For
+	 * Modifies known, filling in all instances of letter found in word. For
 	 * example, if known is {'a', '_', '_', 'l', '_'}, word is "apple", and
 	 * letter is 'p', known becomes {'a', 'p', 'p', 'l', '_'}.
 	 */
