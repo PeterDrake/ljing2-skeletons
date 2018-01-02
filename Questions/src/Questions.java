@@ -63,7 +63,9 @@ public class Questions {
 				textBeingEntered = "";
 				return result;
 			} else if (pressed == '\b') {
+			    if (!textBeingEntered.isEmpty()) {
 				textBeingEntered = textBeingEntered.substring(0, textBeingEntered.length() - 1);
+			    }
 			} else {
 				textBeingEntered += pressed;
 			}
