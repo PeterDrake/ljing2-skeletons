@@ -35,12 +35,12 @@ public class TicTacToe {
 	 * user clicks.
 	 */
 	public static void handleMouseClick(char[][] board, char player) {
-		while (!StdDraw.mousePressed()) {
+		while (!StdDraw.isMousePressed()) {
 			// Wait for mouse press
 		}
 		double x = Math.round(StdDraw.mouseX());
 		double y = Math.round(StdDraw.mouseY());
-		while (StdDraw.mousePressed()) {
+		while (StdDraw.isMousePressed()) {
 			// Wait for mouse release
 		}
 		int a = (int) x;
