@@ -53,6 +53,30 @@ public class NodeTest {
 	}
 	
 	@Test
+	public void detectsHeightForTrickierTree() {
+		Node p = new Node("p");
+		Node q = new Node("q");
+		Node r = new Node("r");
+		Node s = new Node("s");
+		Node t = new Node("t");
+		Node u = new Node("u");
+		Node v = new Node("v");
+		p.setLeft(q);
+		p.setRight(r);
+		q.setRight(s);
+		r.setLeft(t);
+		s.setLeft(u);
+		t.setRight(v);
+		assertEquals(3, p.height());
+		assertEquals(2, q.height());
+		assertEquals(2, r.height());
+		assertEquals(1, s.height());
+		assertEquals(1, t.height());
+		assertEquals(0, u.height());
+		assertEquals(0, v.height());
+	}
+	
+	@Test
 	public void givesProperlyIndentedMultilineString() {
 		assertEquals("a\n  b\n    c\n    d\n  e\n", a.toString());
 	}
