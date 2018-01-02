@@ -152,10 +152,10 @@ public class PokerDice {
 
 	/** Waits until the mouse has been pressed and released. */
 	public void waitForMouseClick() {
-		while (!StdDraw.mousePressed()) {
+		while (!StdDraw.isMousePressed()) {
 			// Wait for mouse to be pressed
 		}
-		while (StdDraw.mousePressed()) {
+		while (StdDraw.isMousePressed()) {
 			// Wait for mouse to be released
 		}
 	}
