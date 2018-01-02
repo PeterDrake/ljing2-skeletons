@@ -231,7 +231,7 @@ public class GoModel {
 
 	/**
 	 * Returns the number of points occupied or surrounded by player. Does not
-	 * into account the 7.5 bonus points given to white.
+	 * take into account the 7.5 bonus points given to white.
 	 */
 	public int score(Color color) {
 		int result = 0;
