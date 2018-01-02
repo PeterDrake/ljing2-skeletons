@@ -79,6 +79,7 @@ public class Focus {
 
 	/** Plays the game. */
 	public void run() {
+		StdDraw.enableDoubleBuffering();
 		StdDraw.setXscale(0, 10);
 		StdDraw.setYscale(0, 10);
 		StdDraw.text(5.0, 8.0, "Focus");
@@ -113,12 +114,12 @@ public class Focus {
 	 * may return null.
 	 */
 	public Location waitForClick() {
-		while (!StdDraw.mousePressed()) {
+		while (!StdDraw.isMousePressed()) {
 			// Wait for mouse press
 		}
 		double x = StdDraw.mouseX();
 		double y = StdDraw.mouseY();
-		while (StdDraw.mousePressed()) {
+		while (StdDraw.isMousePressed()) {
 			// Wait for mouse release
 		}
 		// This catches some clicks on the background as if they were on one of

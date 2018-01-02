@@ -53,7 +53,7 @@ public class DequeTest {
 	}
 
 	@Test
-	public void reomvesFromBack() {
+	public void removesFromBack() {
 		deque.addBack(3);
 		deque.addBack(7);
 		deque.addBack(4);
