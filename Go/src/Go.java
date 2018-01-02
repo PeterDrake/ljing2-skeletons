@@ -74,8 +74,8 @@ public class Go {
 				model.undo();
 			}
 		}
-		if (StdDraw.mousePressed()) {
-			while (StdDraw.mousePressed()) {
+		if (StdDraw.isMousePressed()) {
+			while (StdDraw.isMousePressed()) {
 				// Wait for mouse release
 			}
 			int x = (int) Math.round(StdDraw.mouseX());
@@ -106,10 +106,10 @@ public class Go {
 		StdDraw.text(0.6, 0.25, "13");
 		StdDraw.text(0.8, 0.25, "19");
 		StdDraw.show();
-		while (!StdDraw.mousePressed()) {
+		while (!StdDraw.isMousePressed()) {
 			// Wait for mouse press
 		}
-		while (StdDraw.mousePressed()) {
+		while (StdDraw.isMousePressed()) {
 			// Wait for mouse release
 		}
 		double x = StdDraw.mouseX();
@@ -137,10 +137,10 @@ public class Go {
 		StdDraw.text(0.5, 0.2, "White gets 7.5 extra points to make up for playing second.");
 		StdDraw.text(0.5, 0.1, "CLICK TO CONTINUE");
 		StdDraw.show();
-		while (!StdDraw.mousePressed()) {
+		while (!StdDraw.isMousePressed()) {
 			// Wait for mouse press
 		}
-		while (StdDraw.mousePressed()) {
+		while (StdDraw.isMousePressed()) {
 			// Wait for mouse release
 		}
 	}
