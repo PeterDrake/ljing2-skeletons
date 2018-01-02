@@ -8,7 +8,7 @@ public class Railyard {
 		new Railyard().run();
 	}
 
-	/** Logical moddle of the puzzle. */
+	/** Logical model of the puzzle. */
 	private RailyardModel model;
 
 	public Railyard() {
@@ -77,10 +77,10 @@ public class Railyard {
 
 	/** Resolves a mouse click. */
 	public void handleMouseClick() {
-		while (!StdDraw.mousePressed()) {
+		while (!StdDraw.isMousePressed()) {
 			// Wait for mouse to be pressed
 		}
-		while (StdDraw.mousePressed()) {
+		while (StdDraw.isMousePressed()) {
 			// Wait for mouse to be released
 		}
 		double x = StdDraw.mouseX();
