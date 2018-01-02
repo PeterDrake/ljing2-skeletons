@@ -150,7 +150,7 @@ public class Hand {
 	}
 
 	/**
-	 * If this hand contains a pair of matching numbers, returns 2abcd0, where a
+	 * If this hand contains a pair of matching numbers, returns 1abcd0, where a
 	 * is the paired number and b, c, and d are the single numbers in decreasing
 	 * order. Otherwise returns -1.
 	 * 
