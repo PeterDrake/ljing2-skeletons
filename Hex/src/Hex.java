@@ -99,7 +99,7 @@ public class Hex {
 		StdDraw.enableDoubleBuffering();
 		while (model.findWinner() == HexModel.VACANT) {
 			draw();
-			while (!StdDraw.mousePressed()) {
+			while (!StdDraw.isMousePressed()) {
 				// Wait for mouse click
 			}
 			// Figure out which hex the user clicked on
@@ -122,7 +122,7 @@ public class Hex {
 			if (model.getColor(bestR, bestC) == HexModel.VACANT) {
 				model.playAt(bestR, bestC);
 			}
-			while (StdDraw.mousePressed()) {
+			while (StdDraw.isMousePressed()) {
 				// Wait for mouse release
 			}
 		}
