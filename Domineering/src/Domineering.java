@@ -28,11 +28,10 @@ public class Domineering {
 		// TODO You have to write this
 	}
 
-	/**
-	 * Returns true if playing at x, y is legal for the current player. Assumes
-	 * that x, y is on the board but verifies that the other half of the domino
-	 * is on the board.
-	 */
+        /**
+         * Returns true if playing at x, y is legal for the current player. A move is illegal
+         * if either half of the domino is off the board or on an occupied square.
+         */
 	public static boolean isLegal(int x, int y, boolean[][] board, boolean verticalToPlay) {
 		// TODO You have to write this
 		return false;
