@@ -60,7 +60,7 @@ public class RoomTest {
 	}
 
 	@Test
-	public void testSetMonster() {
+	public void setsMonster() {
 		Monster wolf = new Monster("wolf", 2, "a ferocious, snarling wolf");
 		hall.setMonster(wolf);
 		assertSame(wolf, hall.getMonster());
@@ -72,7 +72,7 @@ public class RoomTest {
 	}
 
 	@Test
-	public void testSetweapon() {
+	public void setsWeapon() {
 		Weapon axe = new Weapon("axe", 5, "a mighty battle axe");
 		hall.setWeapon(axe);
 		assertSame(axe, hall.getWeapon());
