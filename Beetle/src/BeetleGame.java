@@ -105,10 +105,10 @@ public class BeetleGame {
 
 	/** Takes one player's turn. */
 	public void takeTurn() {
-		while (!StdDraw.mousePressed()) {
+		while (!StdDraw.isMousePressed()) {
 			// Wait for mouse to be pressed
 		}
-		while (StdDraw.mousePressed()) {
+		while (StdDraw.isMousePressed()) {
 			// Wait for mouse to be released
 		}
 		die.roll();
